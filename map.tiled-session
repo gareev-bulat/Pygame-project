@@ -1,0 +1,40 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "Все файлы (*)",
+    "fileStates": {
+        "map.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1100,
+                "y": 632.6666666666666
+            }
+        }
+    },
+    "last.exportedFilePath": "C:/Users/HP/Desktop/Pygame_project",
+    "last.imagePath": "C:/Users/HP/Downloads",
+    "map.height": 64,
+    "map.lastUsedExportFilter": "CSV файлы (*.csv)",
+    "map.lastUsedFormat": "tmx",
+    "map.layerDataFormat": null,
+    "map.orientation": null,
+    "map.tileWidth": 64,
+    "map.width": 64,
+    "openFiles": [
+    ],
+    "project": "map.tiled-project",
+    "recentFiles": [
+        "map.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 32,
+        "width": 64
+    }
+}

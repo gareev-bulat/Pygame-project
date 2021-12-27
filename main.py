@@ -12,16 +12,21 @@ def load_image(name, colorkey=None):
     return image
 
 def load_map():
-    print(gameMap)
+    for layer in gameMap.visible_layers:
+        for x, y, gid, in layer:
+            tile = gameMap.get_tile_image_by_gid(gid)
+            if (tile != None):
+                screen.blit(tile, (64 + x * 10 - y * 10, 32 + x * 5 + y * 5))
+                #screen.blit(tile, (x * gameMap.tilewidth / 2, y * gameMap.tileheight / 2))
 
 
 
 if __name__ == '__main__':
     pygame.init()
-    width, height =  500, 500
+    width, height =  800, 800
     size = width, height
-    gameMap = load_pygame("map.tmx")
     screen = pygame.display.set_mode(size)
+    gameMap = load_pygame("map.tmx")
     pygame.display.set_caption('')
     load_map()
     all_sprites = pygame.sprite.Group()

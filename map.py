@@ -1,6 +1,7 @@
 import pytmx
 import pygame as pg
 from settings import *
+vec = pg.math.Vector2
 
 
 class TiledMap:
@@ -16,7 +17,8 @@ class TiledMap:
                 for x, y, gid in layer:
                     tile = self.tmxdata.get_tile_image_by_gid(gid)
                     if tile:
-                        surface.blit(tile, (64 + x * 10 - y * 10, 32 + x * 5 + y * 5))
+                        self.vel = vec(x * TILESIZE, y * TILESIZE)
+                        surface.blit(tile, self.vel)
 
     def make_map(self):
         temp_surface = pg.Surface((self.width, self.height))

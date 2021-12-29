@@ -36,7 +36,7 @@ class Game:
     def run(self):
         self.dt = self.clock.tick(FPS) / 1000
         self.events()
-        self.update()
+        self.update_all()
         self.draw()
 
     def quit(self):

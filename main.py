@@ -1,5 +1,8 @@
-import pygame, os, sys
-from pytmx import load_pygame
+import pygame as pg
+import os, sys
+from settings import *
+from sprites import *
+from map import *
 
 
 def load_image(name, colorkey=None):
@@ -8,31 +11,61 @@ def load_image(name, colorkey=None):
     if not os.path.isfile(fullname):
         print(f"Файл с изображением '{fullname}' не найден")
         sys.exit()
-    image = pygame.image.load(fullname)
+    image = pg.image.load(fullname)
     return image
 
-def load_map():
-    for layer in gameMap.visible_layers:
-        for x, y, gid, in layer:
-            tile = gameMap.get_tile_image_by_gid(gid)
-            if (tile != None):
-                screen.blit(tile, (64 + x * 10 - y * 10, 32 + x * 5 + y * 5))
-                #screen.blit(tile, (x * gameMap.tilewidth / 2, y * gameMap.tileheight / 2))
 
+class Game:
+    def __init__(self):
+        pg.init()
+        self.screen = pg.display.set_mode((WIDTH, HEIGHT))
+        pg.display.set_caption(TITLE)
+        self.clock = pg.time.Clock()
+        pg.key.set_repeat(500, 100)
+        self.load_data()
+
+    def load_data(self):
+        self.map = TiledMap('map.tmx')
+        self.map_img = self.map.make_map()
+        self.map_rect = self.map_img.get_rect()
+
+    def new(self):
+        self.all_sprites = pg.sprite.Group()
+        self.houses = pg.sprite.Group()
+
+    def run(self):
+        self.dt = self.clock.tick(FPS) / 1000
+        self.events()
+        self.update()
+        self.draw()
+
+    def quit(self):
+        pg.quit()
+        sys.exit()
+
+    def update_all(self):
+        # update portion of the game loop
+        self.all_sprites.update()
+
+    def draw(self):
+        pg.display.set_caption('{}'.format(round(self.clock.get_fps(), 2)))
+        self.screen.blit(self.map_img, (120, 100))
+        pg.display.flip()
+
+    def events(self):
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                self.quit()
+                running = False
+            if event.type == pg.KEYDOWN:
+                if event.key == pg.K_ESCAPE:
+                    running = False
+                    self.quit()
 
 
 if __name__ == '__main__':
-    pygame.init()
-    width, height =  800, 800
-    size = width, height
-    screen = pygame.display.set_mode(size)
-    gameMap = load_pygame("map.tmx")
-    pygame.display.set_caption('')
-    load_map()
-    all_sprites = pygame.sprite.Group()
+    game = Game()
     running = True
     while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-        pygame.display.flip()
+        game.new()
+        game.run()

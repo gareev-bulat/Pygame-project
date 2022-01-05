@@ -1,26 +1,36 @@
 import pytmx
 import pygame as pg
 from settings import *
-vec = pg.math.Vector2
+from settings import *
 
 
-class TiledMap:
+class Map:
     def __init__(self, filename):
-        tm_map = pytmx.load_pygame(filename, pixelalpha=True)
-        self.width = tm_map.width * tm_map.tilewidth
-        self.height = tm_map.height * tm_map.tilewidth
-        self.tmxdata = tm_map
+        self.data = []
+        with open(filename, 'r') as file:
+            for line in file:
+                self.data.append(line.strip())
 
-    def render(self, surface):
-        for layer in self.tmxdata.visible_layers:
-            if isinstance(layer, pytmx.TiledTileLayer):
-                for x, y, gid in layer:
-                    tile = self.tmxdata.get_tile_image_by_gid(gid)
-                    if tile:
-                        self.vel = vec(x * TILESIZE, y * TILESIZE)
-                        surface.blit(tile, self.vel)
+        self.width = len(self.data[0]) * TILESIZE
+        self.height = len(self.data) * TILESIZE
 
-    def make_map(self):
-        temp_surface = pg.Surface((self.width, self.height))
-        self.render(temp_surface)
-        return temp_surface
+
+class Camera:
+    def __init__(self, width, height):
+        self.camera = pg.Rect(0, 0, width, height)
+        self.width = width
+        self.height = height
+
+    def apply(self, target):
+        return target.rect.move(self.camera.topleft)
+
+    def update(self, target):
+        x = -target.rect.x + WIDTH // 2
+        y = -target.rect.y + HEIGHT // 2
+
+        # limit to map
+        x = min(0, x)
+        y = min(0, y)
+        x = max(-(self.width - WIDTH), x)
+        y = max(-(self.height - HEIGHT), y)
+        self.camera = pg.Rect(x, y, self.width, self.height)

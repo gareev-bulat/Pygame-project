@@ -2,6 +2,10 @@ import pygame as pg
 
 WIDTH = 1024
 HEIGHT = 768
+GREEN = (0, 255, 0)
+BLACK = (0, 0, 0)
+YELLOW = (255, 255, 0)
+PLAYER_SPEED = 350
 FPS = 60
 TITLE = "Go Around World!"
 TILESIZE = 64

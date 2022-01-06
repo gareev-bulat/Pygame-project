@@ -6,7 +6,6 @@ from map import *
 
 
 def load_image(name, colorkey=None):
-
     fullname = os.path.join('data', name)
     if not os.path.isfile(fullname):
         print(f"Файл с изображением '{fullname}' не найден")
@@ -23,7 +22,9 @@ class Game:
         self.load_data()
 
     def load_data(self):
-        self.map = Map('map.txt')
+        self.map = TiledMap('map.tmx')
+        self.map_image = self.map.make_map()
+        self.map_rect = self.map_image.get_rect()
 
     def update_all(self):
         self.all_sprites.update()
@@ -41,6 +42,9 @@ class Game:
 
     def draw(self):
         self.screen.fill(BLACK)
+
+        self.screen.blit(self.map_image, self.camera.apply_rect_for_map(self.map_rect))
+
         for sprite in self.all_sprites:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
         pg.display.set_caption('{}'.format(round(self.clock.get_fps(), 2)))
@@ -50,12 +54,19 @@ class Game:
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
         self.player = pg.sprite.Group()
-        for row, tiles in enumerate(self.map.data):
-            for col, tile in enumerate(tiles):
-                if tile == '1':
-                    Wall(self, col, row)
-                if tile == 'P':
-                    self.player = Player(self, col, row)
+        # for row, tiles in enumerate(self.map.data):
+        #     for col, tile in enumerate(tiles):
+        #         if tile == '1':
+        #             Wall(self, col, row)
+        #         if tile == 'P':
+        #             self.player = Player(self, col, row)
+
+        for object in self.map.tmx.objects:
+            if object.name == 'player':
+                self.player = Player(self, object.x, object.y)
+            if object.name == 'wall':
+                Wall(self, object.x, object.y, object.width, object.height)
+
         self.camera = Camera(self.map.width, self.map.height)
 
     def run(self):

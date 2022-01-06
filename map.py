@@ -4,15 +4,36 @@ from settings import *
 from settings import *
 
 
-class Map:
-    def __init__(self, filename):
-        self.data = []
-        with open(filename, 'r') as file:
-            for line in file:
-                self.data.append(line.strip())
+# class Map:
+#     def __init__(self, filename):
+#         self.data = []
+#         with open(filename, 'r') as file:
+#             for line in file:
+#                 self.data.append(line.strip())
+#
+#         self.width = len(self.data[0]) * TILESIZE
+#         self.height = len(self.data) * TILESIZE
 
-        self.width = len(self.data[0]) * TILESIZE
-        self.height = len(self.data) * TILESIZE
+
+class TiledMap:
+    def __init__(self, filename):
+        self.tmx = pytmx.load_pygame(filename, pixelalpha=True)
+        self.width = self.tmx.width * self.tmx.tilewidth
+        self.height = self.tmx.height * self.tmx.tileheight
+
+    def render(self, surface):
+        for layer in self.tmx.visible_layers:
+            if isinstance(layer, pytmx.TiledTileLayer):
+                for x, y, gid, in layer:
+                    tile = self.tmx.get_tile_image_by_gid(gid)
+                    if tile:
+                        surface.blit(tile, (x * self.tmx.tilewidth,
+                                            y * self.tmx.tileheight))
+
+    def make_map(self):
+        surface = pg.Surface((self.width, self.height))
+        self.render(surface)
+        return surface
 
 
 class Camera:
@@ -23,6 +44,9 @@ class Camera:
 
     def apply(self, target):
         return target.rect.move(self.camera.topleft)
+
+    def apply_rect_for_map(self, target):
+        return target.move(self.camera.topleft)
 
     def update(self, target):
         x = -target.rect.x + WIDTH // 2

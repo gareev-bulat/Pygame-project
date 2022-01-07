@@ -29,12 +29,14 @@ class Player(pg.sprite.Sprite):
         self.make_jump = False
         self.vniz = False
         self.jump_counter = 50
+        self.levitating = 0
         self.x = x
         self.y = y
 
     def get_keys(self):
         self.vx, self.vy = 0, 0
         keys = pg.key.get_pressed()
+        mods = pg.key.get_mods()
         if keys[pg.K_LEFT] or keys[pg.K_a]:
             self.vx = -PLAYER_SPEED
         if keys[pg.K_RIGHT] or keys[pg.K_d]:
@@ -43,6 +45,10 @@ class Player(pg.sprite.Sprite):
         #     self.vy = -PLAYER_SPEED
         if keys[pg.K_DOWN] or keys[pg.K_s]:
             self.vy = PLAYER_SPEED
+        if mods & pg.KMOD_SHIFT and (keys[pg.K_LEFT] or keys[pg.K_a]):
+            self.vx = -PLAYER_SPEED - 150
+        if mods & pg.KMOD_SHIFT and (keys[pg.K_RIGHT] or keys[pg.K_d]):
+            self.vx = PLAYER_SPEED + 150
         if keys[pg.K_SPACE] and self.make_jump is False:
             self.make_jump = True
         if self.vx != 0 and self.vy != 0:
@@ -53,15 +59,16 @@ class Player(pg.sprite.Sprite):
         hits_with_walls = pg.sprite.spritecollide(self, self.game.walls, False)
         if self.jump_counter >= -50:
             self.y = self.y - self.jump_counter / 2.5
+            print(self.y)
             self.jump_counter -= 1
         else:
             self.jump_counter = 50
             self.make_jump = False
-        if len(hits_with_walls) != 0:
-            self.collide_with_walls('x')
-            self.collide_with_walls('y')
-            self.jump_counter = 50
-            self.make_jump = False
+        # if len(hits_with_walls) != 0:
+        #     self.collide_with_walls('x')
+        #     self.collide_with_walls('y')
+        #     self.jump_counter = 50
+        #     self.make_jump = False
 
     def collide_with_walls(self, direction):
         if direction == 'x':
@@ -80,10 +87,18 @@ class Player(pg.sprite.Sprite):
                     self.y = hits_with_walls[0].rect.bottom
                 if self.vy > 0 or self.jump_counter <= 0:
                     self.y = hits_with_walls[0].rect.top - self.rect.height
+                if self.vy == 0 and not self.make_jump and hits_with_walls[0].rect.top > self.rect.top:
+                    self.y = hits_with_walls[0].rect.top - self.rect.height
+                if self.vy == 0 and hits_with_walls[0].rect.top <= self.rect.top:
+                    self.y = hits_with_walls[0].rect.bottom
                 self.vy = 0
+                self.levitating = 0
                 self.rect.y = self.y
+            else:
+                self.levitating = 5
 
     def update(self):
+        self.y = self.y + self.levitating
         self.get_keys()
         if self.make_jump:
             self.jump()

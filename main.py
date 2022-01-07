@@ -17,6 +17,14 @@ def load_image(name, colorkey=None):
 class Game:
     def __init__(self):
         pg.init()
+        self.vol = 0.3
+        pg.mixer.music.load('menuMusicNeedToChange.mp3')
+        pg.mixer.music.play(-5, 7.3, 10)
+        pg.mixer.music.play(-1)
+        pg.mixer.music.set_volume(self.vol)
+        self.jump_sound = [pg.mixer.Sound('jump_sound_1.mp3'), pg.mixer.Sound('jump_sound_2.mp3'), pg.mixer.Sound('jump_sound_3.mp3')]
+        for sound in self.jump_sound:
+            sound.set_volume(0.2)
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         self.clock = pg.time.Clock()
         self.load_data()
@@ -39,6 +47,14 @@ class Game:
                 if event.key == pg.K_ESCAPE:
                     running = False
                     self.quit()
+                if event.key == pg.K_MINUS:
+                    if self.vol != 0:
+                        self.vol = self.vol - 0.1
+                        pg.mixer.music.set_volume(self.vol)
+                if event.key == pg.K_EQUALS:
+                    if self.vol <= 2:
+                        self.vol = self.vol + 0.1
+                        pg.mixer.music.set_volume(self.vol)
 
     def draw(self):
         self.screen.fill(BLACK)

@@ -111,8 +111,7 @@ class Player(pg.sprite.Sprite):
         hits_with_walls = pg.sprite.spritecollide(self, self.game.walls, False)
 
         try:
-            print(f'{self.rect.bottom} - {hits_with_walls[0].rect.top}')
-            if self.rect.bottom - 15 == hits_with_walls[0].rect.top or self.rect.bottom == hits_with_walls[0].rect.top:
+            if self.rect.bottom - 1 == hits_with_walls[0].rect.top or self.rect.bottom - 10 == hits_with_walls[0].rect.top:
                 self.make_jump = False
                 self.jump_counter = 50
         except IndexError:

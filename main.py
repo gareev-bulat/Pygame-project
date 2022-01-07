@@ -6,7 +6,7 @@ from map import *
 
 
 def load_image(name, colorkey=None):
-    fullname = os.path.join('data', name)
+    fullname = name
     if not os.path.isfile(fullname):
         print(f"Файл с изображением '{fullname}' не найден")
         sys.exit()
@@ -69,13 +69,14 @@ class Game:
     def new(self):
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
-        self.player = pg.sprite.Group()
         # for row, tiles in enumerate(self.map.data):
         #     for col, tile in enumerate(tiles):
         #         if tile == '1':
         #             Wall(self, col, row)
         #         if tile == 'P':
         #             self.player = Player(self, col, row)
+
+
 
         for object in self.map.tmx.objects:
             if object.name == 'player':

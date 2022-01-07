@@ -16,6 +16,28 @@ from random import choice
 #         self.rect.x = x * TILESIZE
 #         self.rect.y = y * TILESIZE
 
+class Ladder(pg.sprite.Sprite):
+
+    def __init__(self, game, x, y):
+        self.groups = game.all_sprites
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.game = game
+        self.x = x
+        self.y = y
+        self.image = pg.Surface((TILESIZE, TILESIZE))
+        self.image.fill(YELLOW)
+        self.rect = self.image.get_rect()
+
+
+    def climb(self):
+        key = pg.key.get_pressed()
+        if key[pg.K_UP] or key[pg.K_w]:
+            self.y -= 1
+
+    def update(self):
+        self.climb()
+        self.rect.x = self.x
+        self.rect.y = self.y
 
 
 class Player(pg.sprite.Sprite):
@@ -29,7 +51,7 @@ class Player(pg.sprite.Sprite):
         self.vx, self.vy = 0, 0
         self.make_jump = False
         self.vniz = False
-        self.jump_counter = 50
+        self.jump_counter = 10
         self.levitating = 0
         self.x = x
         self.y = y
@@ -42,8 +64,9 @@ class Player(pg.sprite.Sprite):
             self.vx = -PLAYER_SPEED
         if keys[pg.K_RIGHT] or keys[pg.K_d]:
             self.vx = PLAYER_SPEED
-        # if keys[pg.K_UP] or keys[pg.K_w]:
-        #     self.vy = -PLAYER_SPEED
+        if keys[pg.K_UP] or keys[pg.K_w]:
+            self.jump()
+            #self.vy = -PLAYER_SPEED
         if keys[pg.K_DOWN] or keys[pg.K_s]:
             self.vy = PLAYER_SPEED
         if mods & pg.KMOD_SHIFT and (keys[pg.K_LEFT] or keys[pg.K_a]):
@@ -59,13 +82,26 @@ class Player(pg.sprite.Sprite):
 
     def jump(self):
         hits_with_walls = pg.sprite.spritecollide(self, self.game.walls, False)
-        if self.jump_counter >= -50:
+        '''if self.jump_counter >= -50:
             self.y = self.y - self.jump_counter / 2.5
             print(self.y)
             self.jump_counter -= 1
         else:
             self.jump_counter = 50
-            self.make_jump = False
+            self.make_jump = False'''
+        if not self.make_jump:
+            self.make_jump = True
+            self.jump_counter += 1
+        else:
+            if self.jump_counter >= -10:
+                if self.jump_counter < 0:
+                    self.y += (self.jump_counter ** 2) / 2
+                else:
+                    self.y -= (self.jump_counter ** 2) / 2
+                self.jump_counter -= 1
+            else:
+                self.make_jump = False
+                self.jump_counter = 10
         # if len(hits_with_walls) != 0:
         #     self.collide_with_walls('x')
         #     self.collide_with_walls('y')

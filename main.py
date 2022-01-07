@@ -82,6 +82,8 @@ class Game:
                 self.player = Player(self, object.x, object.y)
             if object.name == 'wall':
                 Wall(self, object.x, object.y, object.width, object.height)
+            if object.name == 'ladder':
+                Ladder(self, object.x, object.y)
 
         self.camera = Camera(self.map.width, self.map.height)
 

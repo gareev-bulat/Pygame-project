@@ -18,7 +18,7 @@
         }
     },
     "last.exportedFilePath": "C:/Users/HP/Desktop/Pygame_project",
-    "last.imagePath": "C:/Users/HP/Downloads",
+    "last.imagePath": "C:/Users/HP/Downloads/accessories/accessories",
     "map.height": 64,
     "map.lastUsedExportFilter": "CSV файлы (*.csv)",
     "map.lastUsedFormat": "tmx",
@@ -34,7 +34,7 @@
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
-        "height": 32,
+        "height": 64,
         "width": 64
     }
 }

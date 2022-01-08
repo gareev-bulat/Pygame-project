@@ -16,7 +16,13 @@ def load_image(name, colorkey=None):
 class Menu:
 
     def __init__(self):
+        pg.mixer.init()
         pg.font.init()
+        self.vol = 0.3
+        pg.mixer.music.load('Menu Buttons/menu_music.mp3')
+        pg.mixer.music.play(-5, 7.3, 10)
+        pg.mixer.music.play(-1)
+        pg.mixer.music.set_volume(self.vol)
         self.clock = pg.time.Clock()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         self.font = pg.font.SysFont('arial', 36)

@@ -20,41 +20,41 @@ class Menu:
         self.clock = pg.time.Clock()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         self.font = pg.font.SysFont('arial', 36)
+        self.buttons = [load_image('Menu Buttons/play.png'),
+                        load_image('Menu Buttons/options.png'),
+                        load_image('Menu Buttons/exit.png')]
+        self.buttons_sizes = {'play': (221, 100), 
+                              'options': (326, 79), 
+                              'exit': (204, 79)}
 
     def terminate(self):
         pg.quit()
         sys.exit()
 
+    def check_pos(self, pos):
+        x, y = pos[0], pos[1]
+        if 409 <= x <= 615 and 374 <= y <= 450:
+            return True
+        return False
+
     def start_screen(self):
-        intro_text = ["PLAY", "MENU",
-                      "OPTIONS", 'EXIT']
 
         fon = pg.transform.scale(load_image('fon.jpg'), (WIDTH, HEIGHT))
         self.screen.blit(fon, (0, 0))
+        button_1 = self.buttons[0]
+        button_2 = self.buttons[1]
+        button_3 = self.buttons[2]
+        self.screen.blit(button_1, (WIDTH / 2 - (self.buttons_sizes['play'][0] // 2), HEIGHT / 2 - 20))
+        self.screen.blit(button_2, (WIDTH / 2 - (self.buttons_sizes['options'][0] // 2), HEIGHT / 2 + 80))
+        self.screen.blit(button_3, (WIDTH / 2 - (self.buttons_sizes['exit'][0] // 2), HEIGHT / 2 + 100 + 79))
 
-        text_coord = 50
-
-        string_rendered = self.font.render(TITLE, 1, pg.Color('black'))
-        intro_rect = string_rendered.get_rect()
-        intro_rect.x = WIDTH / 2
-        intro_rect.y = 20
-        self.screen.blit(string_rendered, intro_rect)
-
-        for line in intro_text:
-            string_rendered = self.font.render(line, 2, pg.Color('black'))
-            intro_rect = string_rendered.get_rect()
-            text_coord += 10
-            intro_rect.top = text_coord
-            intro_rect.x = WIDTH / 2
-            text_coord += intro_rect.height
-            self.screen.blit(string_rendered, intro_rect)
 
         while True:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     self.terminate()
-                elif event.type == pg.KEYDOWN or \
-                        event.type == pg.MOUSEBUTTONDOWN:
+                elif (event.type == pg.KEYDOWN or event.type == pg.MOUSEBUTTONDOWN) and \
+                        self.check_pos(pg.mouse.get_pos()):
                     game = Game()
                     running = True
                     game.new()

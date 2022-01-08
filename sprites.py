@@ -133,7 +133,7 @@ class Player(pg.sprite.Sprite):
                     self.y = hits_with_walls[0].rect.top - self.rect.height
                 if self.vy == 0 and not self.make_jump and hits_with_walls[0].rect.top > self.rect.top:
                     self.y = hits_with_walls[0].rect.top - self.rect.height
-                if self.vy == 0 and hits_with_walls[0].rect.top <= self.rect.top:
+                if (self.vy == 0 or self.vy > 0) and hits_with_walls[0].rect.top <= self.rect.top:
                     self.y = hits_with_walls[0].rect.bottom
                 self.vy = 0
                 self.levitating = 0

@@ -1,7 +1,7 @@
 import pygame as pg
 from settings import *
 from random import choice
-import os
+import os, sys
 
 
 # class Wall(pg.sprite.Sprite):
@@ -86,7 +86,7 @@ class Player(pg.sprite.Sprite):
             self.vx = -PLAYER_SPEED - 150
         if mods & pg.KMOD_SHIFT and (keys[pg.K_RIGHT] or keys[pg.K_d]):
             self.vx = PLAYER_SPEED + 150
-        if keys[pg.K_SPACE] and self.make_jump is False:
+        if (keys[pg.K_SPACE] or keys[pg.K_UP]) and self.make_jump is False:
             self.make_jump = True
             choice(self.game.jump_sound).play()
         if self.vx != 0 and self.vy != 0:

@@ -13,6 +13,57 @@ def load_image(name, colorkey=None):
     image = pg.image.load(fullname)
     return image
 
+class Menu:
+
+    def __init__(self):
+        pg.font.init()
+        self.clock = pg.time.Clock()
+        self.screen = pg.display.set_mode((WIDTH, HEIGHT))
+        self.font = pg.font.SysFont('arial', 36)
+
+    def terminate(self):
+        pg.quit()
+        sys.exit()
+
+    def start_screen(self):
+        intro_text = ["PLAY", "MENU",
+                      "OPTIONS", 'EXIT']
+
+        fon = pg.transform.scale(load_image('fon.jpg'), (WIDTH, HEIGHT))
+        self.screen.blit(fon, (0, 0))
+
+        text_coord = 50
+
+        string_rendered = self.font.render(TITLE, 1, pg.Color('black'))
+        intro_rect = string_rendered.get_rect()
+        intro_rect.x = WIDTH / 2
+        intro_rect.y = 20
+        self.screen.blit(string_rendered, intro_rect)
+
+        for line in intro_text:
+            string_rendered = self.font.render(line, 2, pg.Color('black'))
+            intro_rect = string_rendered.get_rect()
+            text_coord += 10
+            intro_rect.top = text_coord
+            intro_rect.x = WIDTH / 2
+            text_coord += intro_rect.height
+            self.screen.blit(string_rendered, intro_rect)
+
+        while True:
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    self.terminate()
+                elif event.type == pg.KEYDOWN or \
+                        event.type == pg.MOUSEBUTTONDOWN:
+                    game = Game()
+                    running = True
+                    game.new()
+                    while running:
+                        game.run()
+                    return  # начинаем игру
+            pg.display.flip()
+            self.clock.tick(FPS)
+
 
 class Game:
     def __init__(self):
@@ -83,8 +134,6 @@ class Game:
                 self.player = Player(self, object.x, object.y)
             if object.name == 'wall':
                 Wall(self, object.x, object.y, object.width, object.height)
-            if object.name == 'ladder':
-                Ladder(self, object.x, object.y)
 
         self.camera = Camera(self.map.width, self.map.height)
 
@@ -100,8 +149,10 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game()
+    menu = Menu()
+    menu.start_screen()
+    '''game = Game()
     running = True
     game.new()
     while running:
-        game.run()
+        game.run()'''

@@ -17,7 +17,6 @@ class Menu:
 
     def __init__(self):
         pg.mixer.init()
-        pg.font.init()
         self.vol = 0.3
         pg.mixer.music.load('Menu/menu_music.mp3')
         pg.mixer.music.play(-5, 7.3, 10)
@@ -25,13 +24,16 @@ class Menu:
         pg.mixer.music.set_volume(self.vol)
         self.clock = pg.time.Clock()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
-        self.font = pg.font.SysFont('arial', 36)
         self.buttons = [load_image('Menu/play.png'),
                         load_image('Menu/options.png'),
                         load_image('Menu/exit.png')]
         self.buttons_sizes = {'play': (221, 100), 
                               'options': (326, 79), 
                               'exit': (204, 79)}
+        self.click_up_sound = pg.mixer.Sound("Menu/click_up.mp3")
+        self.click_down_sound = pg.mixer.Sound("Menu/click_down.mp3")
+        self.click_up_sound.set_volume(1.0)
+        self.click_down_sound.set_volume(1.0)
 
     def terminate(self):
         pg.quit()
@@ -40,8 +42,19 @@ class Menu:
     def check_pos(self, pos):
         x, y = pos[0], pos[1]
         if 409 <= x <= 615 and 374 <= y <= 450:
-            return True
+            return 'Play'
+        elif 357 <= x <= 661 and 474 <= y <= 533:
+            return 'Options'
+        elif 414 <= x <= 600 and 574 <= y <= 629:
+            return 'Exit'
         return False
+
+    def click_button_music(self, state):
+        if state == 'up':
+            self.click_up_sound.play()
+        elif state == 'down':
+            self.click_down_sound.play()
+        pg.mixer.music.stop()
 
     def start_screen(self):
 
@@ -59,14 +72,23 @@ class Menu:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     self.terminate()
-                elif (event.type == pg.KEYDOWN or event.type == pg.MOUSEBUTTONDOWN) and \
-                        self.check_pos(pg.mouse.get_pos()):
-                    game = Game()
-                    running = True
-                    game.new()
-                    while running:
-                        game.run()
-                    return  # начинаем игру
+                elif (event.type == pg.KEYUP or event.type == pg.MOUSEBUTTONUP):
+                    self.click_button_music('up')
+                    if self.check_pos(pg.mouse.get_pos()) == 'Play':
+                        game = Game()
+                        running = True
+                        game.new()
+                        while running:
+                            game.run()
+                    elif self.check_pos(pg.mouse.get_pos()) == 'Options':
+                        print('options')
+                        #options = Options()
+                    elif self.check_pos(pg.mouse.get_pos()) == 'Exit':
+                        pg.quit()
+                        sys.exit()
+                elif (event.type == pg.KEYDOWN or event.type == pg.MOUSEBUTTONDOWN):
+                    self.click_button_music('down')
+                    #return  # начинаем игру
             pg.display.flip()
             self.clock.tick(FPS)
 

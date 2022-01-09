@@ -13,6 +13,21 @@ def load_image(name, colorkey=None):
     image = pg.image.load(fullname)
     return image
 
+class Options:
+
+    def __init__(self, screen):
+        self.screen = screen
+        self.screen2 = pg.Surface((OPTIONS_WIDTH, OPTIONS_HEIGHT))
+
+    def surface(self):
+        fon = pg.transform.scale(load_image('Menu/options_fon.jpg'), (OPTIONS_WIDTH, OPTIONS_HEIGHT))
+        self.screen2.blit(fon, (0, 0))
+        self.event()
+
+    def event(self):
+        self.screen.blit(self.screen2, (WIDTH / 2 - OPTIONS_WIDTH / 2, HEIGHT / 2 - OPTIONS_HEIGHT / 2))
+
+
 class Menu:
 
     def __init__(self):
@@ -81,8 +96,8 @@ class Menu:
                         while running:
                             game.run()
                     elif self.check_pos(pg.mouse.get_pos()) == 'Options':
-                        print('options')
-                        #options = Options()
+                        options = Options(self.screen)
+                        options.surface()
                     elif self.check_pos(pg.mouse.get_pos()) == 'Exit':
                         pg.quit()
                         sys.exit()
@@ -179,8 +194,3 @@ class Game:
 if __name__ == '__main__':
     menu = Menu()
     menu.start_screen()
-    '''game = Game()
-    running = True
-    game.new()
-    while running:
-        game.run()'''

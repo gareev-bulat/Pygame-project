@@ -142,12 +142,16 @@ class Game:
 
         for sprite in self.all_sprites:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
+        for sprite in self.money:
+            self.screen.blit(sprite.image, self.camera.apply(sprite))
         pg.display.set_caption('{}'.format(round(self.clock.get_fps(), 2)))
         pg.display.flip()
 
     def new(self):
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
+        self.ladders = pg.sprite.Group()
+        self.money = pg.sprite.Group()
         # for row, tiles in enumerate(self.map.data):
         #     for col, tile in enumerate(tiles):
         #         if tile == '1':
@@ -160,8 +164,12 @@ class Game:
         for object in self.map.tmx.objects:
             if object.name == 'player':
                 self.player = Player(self, object.x, object.y)
-            if object.name == 'wall':
+            elif object.name == 'wall':
                 Wall(self, object.x, object.y, object.width, object.height)
+            elif object.name == 'ladder':
+                Ladder(self, object.x, object.y, object.width, object.height)
+            elif object.name == 'money':
+                Money(self, object.x, object.y, object.width, object.height)
 
         self.camera = Camera(self.map.width, self.map.height)
 

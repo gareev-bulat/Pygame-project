@@ -12,3 +12,4 @@ TITLE = "Go Around World!"
 TILESIZE = 64
 GRAVITY = 3
 JUMP_COUNTER = 30
+ATTACK = False

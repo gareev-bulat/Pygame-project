@@ -32,7 +32,7 @@ class Menu:
 
     def __init__(self):
         pg.mixer.init()
-        self.vol = 0.3
+        self.vol = 0.15
         pg.mixer.music.load('Menu/menu_music.mp3')
         pg.mixer.music.play(-5, 7.3, 10)
         pg.mixer.music.play(-1)
@@ -47,8 +47,7 @@ class Menu:
                               'exit': (204, 79)}
         self.click_up_sound = pg.mixer.Sound("Menu/click_up.mp3")
         self.click_down_sound = pg.mixer.Sound("Menu/click_down.mp3")
-        self.click_up_sound.set_volume(1.0)
-        self.click_down_sound.set_volume(1.0)
+
 
     def terminate(self):
         pg.quit()
@@ -69,7 +68,6 @@ class Menu:
             self.click_up_sound.play()
         elif state == 'down':
             self.click_down_sound.play()
-        pg.mixer.music.stop()
 
     def start_screen(self):
 
@@ -85,6 +83,15 @@ class Menu:
 
         while True:
             for event in pg.event.get():
+                if event.type == pg.KEYDOWN:
+                    if event.key == pg.K_MINUS:
+                        if self.vol != 0:
+                            self.vol = self.vol - 0.1
+                            pg.mixer.music.set_volume(self.vol)
+                    if event.key == pg.K_EQUALS:
+                        if self.vol <= 2:
+                            self.vol = self.vol + 0.1
+                            pg.mixer.music.set_volume(self.vol)
                 if event.type == pg.QUIT:
                     self.terminate()
                 elif (event.type == pg.KEYUP or event.type == pg.MOUSEBUTTONUP):
@@ -112,7 +119,7 @@ class Game:
     def __init__(self):
         pg.init()
         pg.font.init()
-        self.vol = 0.3
+        self.vol = 0.15
         pg.mixer.music.load('menuMusicNeedToChange.mp3')
         pg.mixer.music.play(-5, 7.3, 10)
         pg.mixer.music.play(-1)
@@ -122,6 +129,7 @@ class Game:
             sound.set_volume(0.2)
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         self.money_image = load_image('money.png')
+        self.health_image = load_image('health_icon.png')
         self.text_font = pg.font.SysFont(settings.FONT, 35)
         self.clock = pg.time.Clock()
         self.load_data()
@@ -157,6 +165,8 @@ class Game:
         self.screen.fill(BLACK)
 
         self.screen.blit(self.map_image, self.camera.apply_rect_for_map(self.map_rect))
+        self.screen.blit(self.health_image, (170, 10))
+        self.screen.blit(self.money_image, (900, 10))
 
         for sprite in self.all_sprites:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
@@ -194,10 +204,19 @@ class Game:
         self.camera = Camera(self.map.width, self.map.height)
 
     def screen_panels(self):
-        pg.draw.rect(self.screen, (255, 0, 0), (10, 10, HEALTH + 10, 30))
-        self.screen.blit(self.money_image, (900, 10))
+        if 60 <= (settings.HEALTH * 100) <= 100:
+            self.color_of_health = GREEN
+        elif 25 <= (settings.HEALTH * 100) < 60:
+            self.color_of_health = YELLOW
+        elif 0 <= (settings.HEALTH * 100) < 25:
+            self.color_of_health = RED
+        pg.draw.rect(self.screen, (255, 255, 255), (10, 10, HEALTH * 150 + 5, 40), 4)
+        pg.draw.rect(self.screen, self.color_of_health, (13, 13, HEALTH * 150, 35))
         text_money_counter = self.text_font.render(str(settings.MONEY_COUNTER), True, settings.BLACK)
-        self.screen.blit(text_money_counter, (880, 6))
+        if 0 <= settings.MONEY_COUNTER < 10:
+            self.screen.blit(text_money_counter, (880, 6))
+        elif 10 <= settings.MONEY_COUNTER < 99:
+            self.screen.blit(text_money_counter, (860, 6))
         pg.display.flip()
 
     def run(self):

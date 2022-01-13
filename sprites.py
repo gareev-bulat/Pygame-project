@@ -1,6 +1,5 @@
 import pygame as pg
 import settings
-#from settings import *
 from random import choice
 import os, sys
 
@@ -38,10 +37,37 @@ def cut_sheet(sheet, columns, rows, frames):
                 frame_location, rect.size)), (64, 64)))
 
 
-class Player(pg.sprite.Sprite):
+class Enemies(pg.sprite.Sprite):
     def __init__(self, game, x, y):
+        pg.mixer.init()
         self.groups = game.all_sprites
         pg.sprite.Sprite.__init__(self, self.groups)
+        self.game = game
+        self.clock = pg.time.Clock()
+        self.frames = []
+        self.first_count = 0
+        self.second_count = 0
+        cut_sheet(load_image("testPersonRight.png"), 4, 1, self.frames)
+        cut_sheet(load_image("testPersonLeft.png"), 4, 1, self.frames)
+        self.image = self.frames[4]
+        self.rect = self.image.get_rect()
+        self.vx, self.vy = 0, 0
+        self.make_jump = False
+        self.vniz = False
+        self.onLadder = False
+        self.jump_counter = 50
+        self.levitating = 0
+        self.x = x
+        self.y = y
+
+
+class Player(pg.sprite.Sprite):
+    def __init__(self, game, x, y):
+        pg.mixer.init()
+        self.groups = game.all_sprites
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.money_music = pg.mixer.Sound('picking a coin.mp3')
+        self.money_music.set_volume(1.0)
         self.game = game
         self.clock = pg.time.Clock()
         self.frames = []
@@ -66,6 +92,7 @@ class Player(pg.sprite.Sprite):
         if len(hits_with_money) == 1:
             hits_with_money[0].kill()
             settings.MONEY_COUNTER += 1
+            self.sounds('coin')
         if len(hits_with_ladders) != 0:
             self.onLadder = True
         else:
@@ -152,6 +179,10 @@ class Player(pg.sprite.Sprite):
                 self.rect.y = self.y
             else:
                 self.levitating = 5
+
+    def sounds(self, what):
+        if what == 'coin':
+            self.money_music.play()
 
     def update(self):
         self.y = self.y + self.levitating

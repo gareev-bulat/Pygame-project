@@ -53,20 +53,31 @@ class Player(pg.sprite.Sprite):
         self.vx, self.vy = 0, 0
         self.make_jump = False
         self.vniz = False
+        self.onLadder = False
         self.jump_counter = 50
+        self.money_counter = 0
         self.levitating = 0
         self.x = x
         self.y = y
 
     def get_keys(self):
+        hits_with_ladders = pg.sprite.spritecollide(self, self.game.ladders, False)
+        hits_with_money = pg.sprite.spritecollide(self, self.game.money, False)
+        if len(hits_with_money) == 1:
+            hits_with_money[0].kill()
+            self.money_counter = self.money_counter + 1
+        if len(hits_with_ladders) != 0:
+            self.onLadder = True
+        else:
+            self.onLadder = False
         self.vx, self.vy = 0, 0
         keys = pg.key.get_pressed()
         mods = pg.key.get_mods()
         if keys[pg.K_LEFT] or keys[pg.K_a]:
             if self.make_jump:
-                self.image = self.frames[4 ]
+                self.image = self.frames[4]
             if not self.make_jump:
-                self.first_count = round(self.first_count + 0.2, 2)
+                self.first_count = round(self.first_count + 0.25, 2)
                 if int(self.first_count) == self.first_count:
                     self.image = self.frames[4:8][int(self.first_count) % 4]
             self.vx = -PLAYER_SPEED
@@ -75,11 +86,12 @@ class Player(pg.sprite.Sprite):
                 self.image = self.frames[0]
             self.vx = PLAYER_SPEED
             if not self.make_jump:
-                self.second_count = round(self.second_count + 0.2, 2)
+                self.second_count = round(self.second_count + 0.25, 3)
                 if int(self.second_count) == self.second_count:
                     self.image = self.frames[:4][int(self.second_count) % 4]
-        # if keys[pg.K_UP] or keys[pg.K_w]:
-        #     self.vy = -PLAYER_SPEED
+        if keys[pg.K_UP] or keys[pg.K_w]:
+            if self.onLadder:
+                self.y = self.y - 10
         if keys[pg.K_DOWN] or keys[pg.K_s]:
             self.vy = PLAYER_SPEED
         if mods & pg.KMOD_SHIFT and (keys[pg.K_LEFT] or keys[pg.K_a]):
@@ -159,6 +171,31 @@ class Wall(pg.sprite.Sprite):
         self.groups = game.walls
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
+        self.rect = pg.Rect(x, y, x1, y1)
+        # self.hit_rect = self.rect
+        self.x = x
+        self.y = y
+        self.rect.x = x
+        self.rect.y = y
+
+class Ladder(pg.sprite.Sprite):
+    def __init__(self, game, x, y, x1, y1):
+        self.groups = game.ladders
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.game = game
+        self.rect = pg.Rect(x, y, x1, y1)
+        # self.hit_rect = self.rect
+        self.x = x
+        self.y = y
+        self.rect.x = x
+        self.rect.y = y
+
+class Money(pg.sprite.Sprite):
+    def __init__(self, game, x, y, x1, y1):
+        self.groups = game.money
+        pg.sprite.Sprite.__init__(self, self.groups)
+        image = load_image('money.png')
+        self.image = pg.transform.scale(image, (32, 32))
         self.rect = pg.Rect(x, y, x1, y1)
         # self.hit_rect = self.rect
         self.x = x

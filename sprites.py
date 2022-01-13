@@ -1,5 +1,6 @@
 import pygame as pg
-from settings import *
+import settings
+#from settings import *
 from random import choice
 import os, sys
 
@@ -55,7 +56,6 @@ class Player(pg.sprite.Sprite):
         self.vniz = False
         self.onLadder = False
         self.jump_counter = 50
-        self.money_counter = 0
         self.levitating = 0
         self.x = x
         self.y = y
@@ -65,7 +65,7 @@ class Player(pg.sprite.Sprite):
         hits_with_money = pg.sprite.spritecollide(self, self.game.money, False)
         if len(hits_with_money) == 1:
             hits_with_money[0].kill()
-            self.money_counter = self.money_counter + 1
+            settings.MONEY_COUNTER += 1
         if len(hits_with_ladders) != 0:
             self.onLadder = True
         else:
@@ -80,11 +80,11 @@ class Player(pg.sprite.Sprite):
                 self.first_count = round(self.first_count + 0.25, 2)
                 if int(self.first_count) == self.first_count:
                     self.image = self.frames[4:8][int(self.first_count) % 4]
-            self.vx = -PLAYER_SPEED
+            self.vx = -settings.PLAYER_SPEED
         if keys[pg.K_RIGHT] or keys[pg.K_d]:
             if self.make_jump:
                 self.image = self.frames[0]
-            self.vx = PLAYER_SPEED
+            self.vx = settings.PLAYER_SPEED
             if not self.make_jump:
                 self.second_count = round(self.second_count + 0.25, 3)
                 if int(self.second_count) == self.second_count:
@@ -93,11 +93,11 @@ class Player(pg.sprite.Sprite):
             if self.onLadder:
                 self.y = self.y - 10
         if keys[pg.K_DOWN] or keys[pg.K_s]:
-            self.vy = PLAYER_SPEED
+            self.vy = settings.PLAYER_SPEED
         if mods & pg.KMOD_SHIFT and (keys[pg.K_LEFT] or keys[pg.K_a]):
-            self.vx = -PLAYER_SPEED - 150
+            self.vx = -settings.PLAYER_SPEED - 150
         if mods & pg.KMOD_SHIFT and (keys[pg.K_RIGHT] or keys[pg.K_d]):
-            self.vx = PLAYER_SPEED + 150
+            self.vx = settings.PLAYER_SPEED + 150
         if (keys[pg.K_SPACE] or keys[pg.K_UP]) and self.make_jump is False:
             self.make_jump = True
             choice(self.game.jump_sound).play()

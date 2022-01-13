@@ -111,6 +111,7 @@ class Menu:
 class Game:
     def __init__(self):
         pg.init()
+        pg.font.init()
         self.vol = 0.3
         pg.mixer.music.load('menuMusicNeedToChange.mp3')
         pg.mixer.music.play(-5, 7.3, 10)
@@ -120,6 +121,8 @@ class Game:
         for sound in self.jump_sound:
             sound.set_volume(0.2)
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
+        self.money_image = load_image('money.png')
+        self.text_font = pg.font.SysFont(settings.FONT, 35)
         self.clock = pg.time.Clock()
         self.load_data()
 
@@ -160,7 +163,9 @@ class Game:
         for sprite in self.money:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
         pg.display.set_caption('{}'.format(round(self.clock.get_fps(), 2)))
+        self.screen_panels()
         pg.display.flip()
+
 
     def new(self):
         self.all_sprites = pg.sprite.Group()
@@ -188,11 +193,19 @@ class Game:
 
         self.camera = Camera(self.map.width, self.map.height)
 
+    def screen_panels(self):
+        pg.draw.rect(self.screen, (255, 0, 0), (10, 10, HEALTH + 10, 30))
+        self.screen.blit(self.money_image, (900, 10))
+        text_money_counter = self.text_font.render(str(settings.MONEY_COUNTER), True, settings.BLACK)
+        self.screen.blit(text_money_counter, (880, 6))
+        pg.display.flip()
+
     def run(self):
         self.dt = self.clock.tick(FPS) / 1000
         self.events()
         self.update_all()
         self.draw()
+        self.screen_panels()
 
     def quit(self):
         pg.quit()

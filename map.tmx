@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="90" height="32" tilewidth="64" tileheight="64" infinite="0" nextlayerid="8" nextobjectid="61">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="90" height="32" tilewidth="64" tileheight="64" infinite="0" nextlayerid="8" nextobjectid="67">
  <tileset firstgid="1" source="aa.tsx"/>
  <tileset firstgid="541" source="tiles_1.tsx"/>
  <tileset firstgid="766" source="tile_3.tsx"/>
@@ -81,16 +81,16 @@
   <object id="2" name="wall" x="0.363636" y="1602.15" width="64" height="445.848"/>
   <object id="4" name="wall" x="65.6667" y="1601.09" width="5630.24" height="64"/>
   <object id="6" name="wall" x="5696.58" y="1602.12" width="64" height="444"/>
-  <object id="7" name="player" x="3776" y="1544" width="64" height="64"/>
-  <object id="11" name="wall" x="3072" y="1100" width="64" height="56"/>
-  <object id="12" name="wall" x="3136" y="1164" width="64" height="53.3333"/>
-  <object id="13" name="wall" x="3200" y="1229" width="64" height="50"/>
-  <object id="14" name="wall" x="3264" y="1292" width="64" height="56"/>
-  <object id="15" name="wall" x="3328" y="1356" width="64" height="53.3333"/>
-  <object id="16" name="wall" x="3392" y="1420" width="64" height="56"/>
-  <object id="17" name="wall" x="3456" y="1485" width="64" height="115"/>
-  <object id="22" name="ladder" x="2983.76" y="1099.09" width="67.0303" height="508"/>
-  <object id="27" name="money" x="3664" y="1558.67" width="32" height="32"/>
+  <object id="7" name="player" x="3776" y="1536" width="64" height="64"/>
+  <object id="11" name="wall" x="3072" y="1096" width="64" height="56"/>
+  <object id="12" name="wall" x="3136" y="1159" width="64" height="58.3333"/>
+  <object id="13" name="wall" x="3200" y="1224" width="64" height="55"/>
+  <object id="14" name="wall" x="3264" y="1288" width="64" height="60"/>
+  <object id="15" name="wall" x="3328" y="1352" width="64" height="57.3333"/>
+  <object id="16" name="wall" x="3392" y="1417" width="64" height="59"/>
+  <object id="17" name="wall" x="3456" y="1480" width="64" height="120"/>
+  <object id="22" name="ladder" x="2985" y="1088" width="62" height="507"/>
+  <object id="27" name="money" x="3666" y="1554" width="32" height="32"/>
   <object id="30" name="money" x="3281.33" y="1238.67" width="32" height="32"/>
   <object id="31" name="money" x="3218.67" y="1176" width="32" height="32"/>
   <object id="37" name="money" x="2836.67" y="976" width="32" height="32"/>
@@ -100,7 +100,7 @@
   <object id="35" name="money" x="961.333" y="1253.33" width="32" height="32"/>
   <object id="36" name="money" x="457.333" y="1550.67" width="32" height="32"/>
   <object id="40" name="wall" x="2049.33" y="704.485" width="190.848" height="54.6667"/>
-  <object id="41" name="wall" x="2431.67" y="895.333" width="129.666" height="54.6667"/>
+  <object id="41" name="wall" x="2431.67" y="895.333" width="127.33" height="54.6667"/>
   <object id="42" name="money" x="2098.67" y="627" width="32" height="32"/>
   <object id="43" name="money" x="2071.33" y="666" width="32" height="32"/>
   <object id="44" name="money" x="2120.67" y="666.333" width="32" height="32"/>
@@ -111,8 +111,8 @@
   <object id="56" name="shipp" x="3231" y="1539">
    <polygon points="0.5,34.5 20.5,61.5 -18.5,62.5"/>
   </object>
-  <object id="59" name="shipp" x="3296" y="1538">
-   <polygon points="0.5,34.5 20.5,61.5 -18.5,62.5"/>
+  <object id="59" name="shipp" x="3295.74" y="1534.65">
+   <polygon points="0.50641,36.3482 20.7628,64.7946 -18.7372,65.8482"/>
   </object>
   <object id="60" name="shipp" x="3360" y="1537">
    <polygon points="0.5,34.5 20.5,61.5 -18.5,62.5"/>

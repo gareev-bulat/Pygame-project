@@ -82,6 +82,7 @@ class Player(pg.sprite.Sprite):
         self.make_jump = False
         self.vniz = False
         self.onLadder = False
+        self.temp = []
         self.jump_counter = 50
         self.levitating = 0
         self.x = x
@@ -100,10 +101,13 @@ class Player(pg.sprite.Sprite):
             self.onLadder = True
         else:
             self.onLadder = False
-        if len(hits_with_shipp) == 1 and settings.ATTACK:
-            settings.HEALTH -= settings.ENEMIES_DAMAGE['shipp']
-            settings.ATTACK = False
-            self.sounds('damage_to_player')
+        if len(hits_with_shipp) != 0 and (settings.ATTACK or self.temp != hits_with_shipp):
+            self.temp = []
+            for hit in hits_with_shipp:
+                self.temp.append(hit)
+                settings.HEALTH -= settings.ENEMIES_DAMAGE['shipp']
+                settings.ATTACK = False
+                self.sounds('damage_to_player')
         elif len(hits_with_shipp) == 0:
             settings.ATTACK = True
         self.vx, self.vy = 0, 0
@@ -254,6 +258,7 @@ class Shipp(pg.sprite.Sprite):
         self.rect = pg.Rect(x, y, x1, y1)
         # self.hit_rect = self.rect
         self.x = x
+        self.damage = 0.04
         self.y = y
         self.rect.x = x
         self.rect.y = y

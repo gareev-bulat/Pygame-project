@@ -23,7 +23,7 @@
             "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 592,
+                "x": 1066,
                 "y": 1201
             }
         },
@@ -45,6 +45,7 @@
     ],
     "project": "map.tiled-project",
     "recentFiles": [
+        "map2.tmx",
         "map.tmx",
         "tile_3.tsx"
     ],

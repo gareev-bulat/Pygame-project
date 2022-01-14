@@ -113,7 +113,7 @@ class Player(pg.sprite.Sprite):
         self.vx, self.vy = 0, 0
         keys = pg.key.get_pressed()
         mods = pg.key.get_mods()
-        if keys[pg.K_LEFT] or keys[pg.K_a]:
+        if (keys[pg.K_LEFT] and not keys[pg.K_RIGHT]) or (keys[pg.K_a] and not keys[pg.K_d]):
             if self.make_jump:
                 self.image = self.frames[4]
             if not self.make_jump:
@@ -121,7 +121,7 @@ class Player(pg.sprite.Sprite):
                 if int(self.first_count) == self.first_count:
                     self.image = self.frames[4:8][int(self.first_count) % 4]
             self.vx = -settings.PLAYER_SPEED
-        if keys[pg.K_RIGHT] or keys[pg.K_d]:
+        if (keys[pg.K_RIGHT] and not keys[pg.K_LEFT]) or (keys[pg.K_d] and not keys[pg.K_a]):
             if self.make_jump:
                 self.image = self.frames[0]
             self.vx = settings.PLAYER_SPEED

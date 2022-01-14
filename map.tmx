@@ -103,9 +103,9 @@
   <object id="36" name="money" x="457.333" y="1550.67" width="32" height="32"/>
   <object id="40" name="wall" x="2049.33" y="704.485" width="190.848" height="54.6667"/>
   <object id="41" name="wall" x="2431.67" y="895.333" width="129.666" height="54.6667"/>
-  <object id="42" name="money" x="2100.67" y="618" width="32" height="32"/>
+  <object id="42" name="money" x="2098.67" y="627" width="32" height="32"/>
   <object id="43" name="money" x="2071.33" y="666" width="32" height="32"/>
-  <object id="44" name="money" x="2131.67" y="666.333" width="32" height="32"/>
+  <object id="44" name="money" x="2120.67" y="666.333" width="32" height="32"/>
   <object id="52" name="wall" x="2754.52" y="1023.12" width="125.333" height="49.6667"/>
   <object id="54" name="shipp" x="2527" y="833">
    <polygon points="0.5,34.5 20.5,61.5 -18.5,62.5"/>

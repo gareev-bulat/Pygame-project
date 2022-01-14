@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/main" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="05ee5613-275b-4909-a95c-f5aec8c90f5b" name="Default Changelist" comment="damage to player, add map, add shipp(enemy)">
+      <change afterPath="$PROJECT_DIR$/spritesheet_24.tsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="22Uf6XrviO9MDm4GkAs0p6lGFLA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Pygame_project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Pygame_project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="sprites" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Pygame_project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sprites.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.sprites" />
+        <item itemvalue="Python.main2" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="05ee5613-275b-4909-a95c-f5aec8c90f5b" name="Default Changelist" comment="" />
+      <created>1639896912765</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1639896912765</updated>
+    </task>
+    <task id="LOCAL-00001" summary="commit mes">
+      <created>1639897281628</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1639897281629</updated>
+    </task>
+    <task id="LOCAL-00002" summary="commit mes">
+      <created>1639898075339</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1639898075340</updated>
+    </task>
+    <task id="LOCAL-00003" summary="commit mes">
+      <created>1640346543925</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1640346543926</updated>
+    </task>
+    <task id="LOCAL-00004" summary="commit mes">
+      <created>1640347770702</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1640347770703</updated>
+    </task>
+    <task id="LOCAL-00005" summary="commit mes2">
+      <created>1640348462487</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1640348462488</updated>
+    </task>
+    <task id="LOCAL-00006" summary="commit4">
+      <created>1640545770426</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1640545770427</updated>
+    </task>
+    <task id="LOCAL-00007" summary="commit5">
+      <created>1640604089441</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1640604089443</updated>
+    </task>
+    <task id="LOCAL-00008" summary="commit5">
+      <created>1641590366899</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1641590366906</updated>
+    </task>
+    <task id="LOCAL-00009" summary="jumps">
+      <created>1641591183979</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1641591183981</updated>
+    </task>
+    <task id="LOCAL-00010" summary="MENU &#10;only text">
+      <created>1641645805280</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1641645805296</updated>
+    </task>
+    <task id="LOCAL-00011" summary="MENU &#10;button_play complete">
+      <created>1641650647404</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1641650647409</updated>
+    </task>
+    <task id="LOCAL-00012" summary="MENU &#10;button_play complete&#10;menu music">
+      <created>1641653979623</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1641653979627</updated>
+    </task>
+    <task id="LOCAL-00013" summary="MENU button_play complete menu music, correct mistakes">
+      <created>1641654455672</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1641654455713</updated>
+    </task>
+    <task id="LOCAL-00014" summary="MENU buttons complete(options), need volume to click sounds">
+      <created>1641672436781</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1641672436787</updated>
+    </task>
+    <task id="LOCAL-00015" summary="options display">
+      <created>1641718714936</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1641718714951</updated>
+    </task>
+    <task id="LOCAL-00016" summary="money_counter on screen">
+      <created>1642081130749</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1642081130750</updated>
+    </task>
+    <task id="LOCAL-00017" summary="money_counter, health_bar0">
+      <created>1642109501390</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1642109501394</updated>
+    </task>
+    <task id="LOCAL-00018" summary="damage to player, add map, add shipp(enemy)">
+      <created>1642184124675</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1642184124675</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="commit mes" />
+    <MESSAGE value="commit mes2" />
+    <MESSAGE value="commit4" />
+    <MESSAGE value="commit5" />
+    <MESSAGE value="jumps" />
+    <MESSAGE value="MENU &#10;only text" />
+    <MESSAGE value="MENU &#10;button_play complete" />
+    <MESSAGE value="MENU &#10;button_play complete&#10;menu music" />
+    <MESSAGE value="MENU button_play complete menu music, correct mistakes" />
+    <MESSAGE value="MENU buttons complete(options), need volume to click sounds" />
+    <MESSAGE value="options display" />
+    <MESSAGE value="money_counter on screen" />
+    <MESSAGE value="money_counter, health_bar" />
+    <MESSAGE value="damage to player, add map, add shipp(enemy)" />
+    <option name="LAST_COMMIT_MESSAGE" value="damage to player, add map, add shipp(enemy)" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="508" y="236" key="#Notifications" timestamp="1641634733439">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="508" y="236" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1641634733439" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1639897823800">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1639897823800" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1641590580683">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1641590580683" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1641588696858">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1641588696858" />
+    <state width="1515" height="240" key="GridCell.Tab.0.bottom" timestamp="1642184131481">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="240" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1642184131481" />
+    <state width="1515" height="240" key="GridCell.Tab.0.center" timestamp="1642184131481">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="240" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1642184131481" />
+    <state width="1515" height="240" key="GridCell.Tab.0.left" timestamp="1642184131481">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="240" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1642184131481" />
+    <state width="1515" height="240" key="GridCell.Tab.0.right" timestamp="1642184131481">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="240" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1642184131481" />
+    <state width="757" height="151" key="GridCell.Tab.1.bottom" timestamp="1641641032983">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="757" height="151" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1641641032983" />
+    <state width="757" height="151" key="GridCell.Tab.1.center" timestamp="1641641032983">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="757" height="151" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1641641032983" />
+    <state width="757" height="151" key="GridCell.Tab.1.left" timestamp="1641641032983">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="757" height="151" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1641641032983" />
+    <state width="757" height="151" key="GridCell.Tab.1.right" timestamp="1641641032983">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="757" height="151" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1641641032983" />
+    <state x="156" y="86" key="MergeDialog" timestamp="1641582860223">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="156" y="86" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1641582860222" />
+    <state x="402" y="230" key="MultipleFileMergeDialog" timestamp="1641634433081">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="402" y="230" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1641634433081" />
+    <state x="587" y="133" key="RollbackChangesDialog" timestamp="1641591085998">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="587" y="133" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1641591085998" />
+    <state x="555" y="128" key="VCS.ChangeListViewerDialog" timestamp="1642075779763">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="555" y="128" key="VCS.ChangeListViewerDialog/0.0.1536.824@0.0.1536.824" timestamp="1642075779763" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1642110174597">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1642110174597" />
+    <state x="492" y="146" key="VcsDiffUtil.ChangesDialog" timestamp="1639898958136">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="492" y="146" key="VcsDiffUtil.ChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1639898958136" />
+    <state x="630" y="315" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1642154966244">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="630" y="315" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1642154966244" />
+    <state x="582" y="222" key="git4idea.branch.GitSmartOperationDialog" timestamp="1641590877489">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="582" y="222" key="git4idea.branch.GitSmartOperationDialog/0.0.1536.824@0.0.1536.824" timestamp="1641590877489" />
+    <state x="570" y="319" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1641634081729">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="570" y="319" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1536.824@0.0.1536.824" timestamp="1641634081729" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1642105959672">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1642105959672" />
+  </component>
+</project>

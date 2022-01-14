@@ -8,7 +8,7 @@ from map import *
 def load_image(name, colorkey=None):
     fullname = name
     if not os.path.isfile(fullname):
-        print(f"Файл с изображением '{fullname}' не найден")
+        print(f"Файл с изображением '{fullname}' не найден!")
         sys.exit()
     image = pg.image.load(fullname)
     return image
@@ -174,6 +174,8 @@ class Game:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
         for sprite in self.money:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
+        for sprite in self.medthings:
+            self.screen.blit(sprite.image, self.camera.apply(sprite))
         pg.display.set_caption('{}'.format(round(self.clock.get_fps(), 2)))
         self.screen_panels()
         pg.display.flip()
@@ -185,6 +187,7 @@ class Game:
         self.ladders = pg.sprite.Group()
         self.money = pg.sprite.Group()
         self.shipp = pg.sprite.Group()
+        self.medthings = pg.sprite.Group()
         # for row, tiles in enumerate(self.map.data):
         #     for col, tile in enumerate(tiles):
         #         if tile == '1':
@@ -205,18 +208,22 @@ class Game:
                 Money(self, object.x, object.y, object.width, object.height)
             elif object.name == 'shipp':
                 Shipp(self, object.x, object.y, object.width, object.height)
+            elif object.name == 'medkit':
+                MedKit(self, object.x, object.y, object.width, object.height)
+            elif object.name == 'bandage':
+                Bandage(self, object.x, object.y, object.width, object.height)
 
         self.camera = Camera(self.map.width, self.map.height)
 
     def screen_panels(self):
-        if 60 <= (settings.HEALTH * 100) <= 100:
+        if 60 <= (self.player.health * 100) <= 100:
             self.color_of_health = GREEN
-        elif 25 <= (settings.HEALTH * 100) < 60:
+        elif 25 <= (self.player.health * 100) < 60:
             self.color_of_health = YELLOW
-        elif 0 <= (settings.HEALTH * 100) < 25:
+        elif 0 <= (self.player.health * 100) < 25:
             self.color_of_health = RED
         pg.draw.rect(self.screen, (255, 255, 255), (10, 10, 155, 40), 4)
-        pg.draw.rect(self.screen, self.color_of_health, (13, 13, settings.HEALTH * 150, 35))
+        pg.draw.rect(self.screen, self.color_of_health, (13, 13, self.player.health * 150, 35))
         text_money_counter = self.text_font.render(str(settings.MONEY_COUNTER), True, settings.DARK_BLUE)
         if 0 <= settings.MONEY_COUNTER < 10:
             self.screen.blit(text_money_counter, (880, 6))

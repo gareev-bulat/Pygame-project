@@ -12,11 +12,11 @@
             "scaleInDock": 1
         },
         "map.tmx": {
-            "scale": 0.5,
+            "scale": 0.25,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 244,
-                "y": 1007
+                "x": 856,
+                "y": 1038
             }
         },
         "map2.tmx": {

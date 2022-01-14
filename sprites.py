@@ -72,6 +72,7 @@ class Player(pg.sprite.Sprite):
         self.game = game
         self.clock = pg.time.Clock()
         self.frames = []
+        self.health = 1.0
         self.first_count = 0
         self.second_count = 0
         cut_sheet(load_image("testPersonRight.png"), 4, 1, self.frames)
@@ -85,6 +86,7 @@ class Player(pg.sprite.Sprite):
         self.temp = []
         self.jump_counter = 50
         self.levitating = 0
+        self.count_damage_shipps = 0
         self.x = x
         self.y = y
 
@@ -93,6 +95,7 @@ class Player(pg.sprite.Sprite):
         hits_with_ladders = pg.sprite.spritecollide(self, self.game.ladders, False)
         hits_with_money = pg.sprite.spritecollide(self, self.game.money, False)
         hits_with_shipp = pg.sprite.spritecollide(self, self.game.shipp, False)
+        hits_with_medthings = pg.sprite.spritecollide(self, self.game.medthings, False)
         if len(hits_with_money) == 1:
             hits_with_money[0].kill()
             settings.MONEY_COUNTER += 1
@@ -101,15 +104,23 @@ class Player(pg.sprite.Sprite):
             self.onLadder = True
         else:
             self.onLadder = False
-        if len(hits_with_shipp) != 0 and (settings.ATTACK or self.temp != hits_with_shipp):
-            self.temp = []
+        if len(hits_with_shipp) != 0:
+            self.count_damage_shipps = round(self.count_damage_shipps + 0.0625, 4)
             for hit in hits_with_shipp:
-                self.temp.append(hit)
-                settings.HEALTH -= settings.ENEMIES_DAMAGE['shipp']
-                settings.ATTACK = False
-                self.sounds('damage_to_player')
+                if self.count_damage_shipps == 0.25 or self.count_damage_shipps % 1 == 0:
+                    self.health -= settings.ENEMIES_DAMAGE['shipp']
+                    self.sounds('damage_to_player')
         elif len(hits_with_shipp) == 0:
-            settings.ATTACK = True
+            self.count_damage_shipps = 0
+        if hits_with_medthings:
+            if hits_with_medthings[0] == MedKit:
+                self.health = 1.0
+                self.kill()
+            else:
+                self.health = self.health + 0.2
+                self.kill()
+                if self.health > 1.0:
+                    self.health = 1.0
         self.vx, self.vy = 0, 0
         keys = pg.key.get_pressed()
         mods = pg.key.get_mods()
@@ -146,18 +157,19 @@ class Player(pg.sprite.Sprite):
             self.vy = self.vy // 1.5
 
     def jump(self):
-        hits_with_walls = pg.sprite.spritecollide(self, self.game.walls, False)
-        if self.jump_counter >= -50:
-            self.y = self.y - self.jump_counter / 2.5
-            self.jump_counter -= 1
-        else:
-            self.jump_counter = 50
-            self.make_jump = False
-        # if len(hits_with_walls) != 0:
-        #     self.collide_with_walls('x')
-        #     self.collide_with_walls('y')
-        #     self.jump_counter = 50
-        #     self.make_jump = False
+        if not self.onLadder:
+            hits_with_walls = pg.sprite.spritecollide(self, self.game.walls, False)
+            if self.jump_counter >= -50:
+                self.y = self.y - self.jump_counter / 2.5
+                self.jump_counter -= 1
+            else:
+                self.jump_counter = 50
+                self.make_jump = False
+            # if len(hits_with_walls) != 0:
+            #     self.collide_with_walls('x')
+            #     self.collide_with_walls('y')
+            #     self.jump_counter = 50
+            #     self.make_jump = False
 
     def collide_with_walls(self, direction):
         hits_with_walls = pg.sprite.spritecollide(self, self.game.walls, False)
@@ -242,6 +254,34 @@ class Money(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self, self.groups)
         image = load_image('money.png')
         self.image = pg.transform.scale(image, (32, 32))
+        self.rect = pg.Rect(x, y, x1, y1)
+        # self.hit_rect = self.rect
+        self.x = x
+        self.y = y
+        self.rect.x = x
+        self.rect.y = y
+
+
+class MedKit(pg.sprite.Sprite):
+    def __init__(self, game, x, y, x1, y1):
+        self.groups = game.medthings
+        pg.sprite.Sprite.__init__(self, self.groups)
+        image = load_image('medkit.png')
+        self.image = pg.transform.scale(image, (64, 64))
+        self.rect = pg.Rect(x, y, x1, y1)
+        # self.hit_rect = self.rect
+        self.x = x
+        self.y = y
+        self.rect.x = x
+        self.rect.y = y
+
+
+class Bandage(pg.sprite.Sprite):
+    def __init__(self, game, x, y, x1, y1):
+        self.groups = game.medthings
+        pg.sprite.Sprite.__init__(self, self.groups)
+        image = load_image('bandage.jpg')
+        self.image = pg.transform.scale(image, (48, 48))
         self.rect = pg.Rect(x, y, x1, y1)
         # self.hit_rect = self.rect
         self.x = x

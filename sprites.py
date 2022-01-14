@@ -67,6 +67,7 @@ class Player(pg.sprite.Sprite):
         self.groups = game.all_sprites
         pg.sprite.Sprite.__init__(self, self.groups)
         self.money_music = pg.mixer.Sound('picking a coin.mp3')
+        self.player_damage_music = pg.mixer.Sound('hit_player.mp3')
         self.money_music.set_volume(1.0)
         self.game = game
         self.clock = pg.time.Clock()
@@ -86,9 +87,11 @@ class Player(pg.sprite.Sprite):
         self.x = x
         self.y = y
 
+
     def get_keys(self):
         hits_with_ladders = pg.sprite.spritecollide(self, self.game.ladders, False)
         hits_with_money = pg.sprite.spritecollide(self, self.game.money, False)
+        hits_with_shipp = pg.sprite.spritecollide(self, self.game.shipp, False)
         if len(hits_with_money) == 1:
             hits_with_money[0].kill()
             settings.MONEY_COUNTER += 1
@@ -97,6 +100,12 @@ class Player(pg.sprite.Sprite):
             self.onLadder = True
         else:
             self.onLadder = False
+        if len(hits_with_shipp) == 1 and settings.ATTACK:
+            settings.HEALTH -= settings.ENEMIES_DAMAGE['shipp']
+            settings.ATTACK = False
+            self.sounds('damage_to_player')
+        elif len(hits_with_shipp) == 0:
+            settings.ATTACK = True
         self.vx, self.vy = 0, 0
         keys = pg.key.get_pressed()
         mods = pg.key.get_mods()
@@ -183,6 +192,8 @@ class Player(pg.sprite.Sprite):
     def sounds(self, what):
         if what == 'coin':
             self.money_music.play()
+        if what == 'damage_to_player':
+            self.player_damage_music.play()
 
     def update(self):
         self.y = self.y + self.levitating
@@ -227,6 +238,19 @@ class Money(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self, self.groups)
         image = load_image('money.png')
         self.image = pg.transform.scale(image, (32, 32))
+        self.rect = pg.Rect(x, y, x1, y1)
+        # self.hit_rect = self.rect
+        self.x = x
+        self.y = y
+        self.rect.x = x
+        self.rect.y = y
+
+
+class Shipp(pg.sprite.Sprite):
+    def __init__(self, game, x, y, x1, y1):
+        self.groups = game.shipp
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.game = game
         self.rect = pg.Rect(x, y, x1, y1)
         # self.hit_rect = self.rect
         self.x = x

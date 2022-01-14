@@ -184,6 +184,7 @@ class Game:
         self.walls = pg.sprite.Group()
         self.ladders = pg.sprite.Group()
         self.money = pg.sprite.Group()
+        self.shipp = pg.sprite.Group()
         # for row, tiles in enumerate(self.map.data):
         #     for col, tile in enumerate(tiles):
         #         if tile == '1':
@@ -202,6 +203,8 @@ class Game:
                 Ladder(self, object.x, object.y, object.width, object.height)
             elif object.name == 'money':
                 Money(self, object.x, object.y, object.width, object.height)
+            elif object.name == 'shipp':
+                Shipp(self, object.x, object.y, object.width, object.height)
 
         self.camera = Camera(self.map.width, self.map.height)
 
@@ -212,9 +215,9 @@ class Game:
             self.color_of_health = YELLOW
         elif 0 <= (settings.HEALTH * 100) < 25:
             self.color_of_health = RED
-        pg.draw.rect(self.screen, (255, 255, 255), (10, 10, HEALTH * 150 + 5, 40), 4)
-        pg.draw.rect(self.screen, self.color_of_health, (13, 13, HEALTH * 150, 35))
-        text_money_counter = self.text_font.render(str(settings.MONEY_COUNTER), True, settings.BLACK)
+        pg.draw.rect(self.screen, (255, 255, 255), (10, 10, 155, 40), 4)
+        pg.draw.rect(self.screen, self.color_of_health, (13, 13, settings.HEALTH * 150, 35))
+        text_money_counter = self.text_font.render(str(settings.MONEY_COUNTER), True, settings.DARK_BLUE)
         if 0 <= settings.MONEY_COUNTER < 10:
             self.screen.blit(text_money_counter, (880, 6))
         elif 10 <= settings.MONEY_COUNTER < 99:

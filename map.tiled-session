@@ -18,6 +18,9 @@
                 "x": 3072.6666666666665,
                 "y": 1039.3333333333335
             }
+        },
+        "tile_3.tsx": {
+            "scaleInEditor": 1
         }
     },
     "last.exportedFilePath": "C:/Users/HP/Desktop/Pygame_project",
@@ -34,6 +37,7 @@
     ],
     "project": "map.tiled-project",
     "recentFiles": [
+        "tile_3.tsx",
         "map.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",

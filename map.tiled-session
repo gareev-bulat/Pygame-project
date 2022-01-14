@@ -12,11 +12,19 @@
             "scaleInDock": 1
         },
         "map.tmx": {
-            "scale": 0.75,
+            "scale": 0.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 3072.6666666666665,
-                "y": 1039.3333333333335
+                "x": 244,
+                "y": 1007
+            }
+        },
+        "map2.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 592,
+                "y": 1201
             }
         },
         "tile_3.tsx": {
@@ -37,8 +45,8 @@
     ],
     "project": "map.tiled-project",
     "recentFiles": [
-        "tile_3.tsx",
-        "map.tmx"
+        "map.tmx",
+        "tile_3.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

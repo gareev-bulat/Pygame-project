@@ -115,10 +115,10 @@ class Player(pg.sprite.Sprite):
         if hits_with_medthings:
             if hits_with_medthings[0] == MedKit:
                 self.health = 1.0
-                self.kill()
+                hits_with_medthings[0].kill()
             else:
                 self.health = self.health + 0.2
-                self.kill()
+                hits_with_medthings[0].kill()
                 if self.health > 1.0:
                     self.health = 1.0
         self.vx, self.vy = 0, 0

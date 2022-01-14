@@ -262,10 +262,10 @@ class Money(pg.sprite.Sprite):
 
 class MedKit(pg.sprite.Sprite):
     def __init__(self, game, x, y, x1, y1):
-        self.groups = game.medkits
+        self.groups = game.medthings
         pg.sprite.Sprite.__init__(self, self.groups)
         image = load_image('medkit.png')
-        self.image = pg.transform.scale(image, (48, 48))
+        self.image = pg.transform.scale(image, (64, 64))
         self.rect = pg.Rect(x, y, x1, y1)
         # self.hit_rect = self.rect
         self.x = x
@@ -276,10 +276,10 @@ class MedKit(pg.sprite.Sprite):
 
 class Bandage(pg.sprite.Sprite):
     def __init__(self, game, x, y, x1, y1):
-        self.groups = game.medkits
+        self.groups = game.medthings
         pg.sprite.Sprite.__init__(self, self.groups)
         image = load_image('bandage.jpg')
-        self.image = pg.transform.scale(image, (32, 32))
+        self.image = pg.transform.scale(image, (48, 48))
         self.rect = pg.Rect(x, y, x1, y1)
         # self.hit_rect = self.rect
         self.x = x

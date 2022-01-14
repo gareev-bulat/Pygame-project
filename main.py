@@ -174,6 +174,8 @@ class Game:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
         for sprite in self.money:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
+        for sprite in self.medthings:
+            self.screen.blit(sprite.image, self.camera.apply(sprite))
         pg.display.set_caption('{}'.format(round(self.clock.get_fps(), 2)))
         self.screen_panels()
         pg.display.flip()
@@ -206,6 +208,10 @@ class Game:
                 Money(self, object.x, object.y, object.width, object.height)
             elif object.name == 'shipp':
                 Shipp(self, object.x, object.y, object.width, object.height)
+            elif object.name == 'medkit':
+                MedKit(self, object.x, object.y, object.width, object.height)
+            elif object.name == 'bandage':
+                Bandage(self, object.x, object.y, object.width, object.height)
 
         self.camera = Camera(self.map.width, self.map.height)
 

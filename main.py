@@ -65,8 +65,10 @@ class Menu:
 
     def click_button_music(self, state):
         if state == 'up':
+            self.click_up_sound.set_volume(0.15)
             self.click_up_sound.play()
         elif state == 'down':
+            self.click_down_sound.set_volume(0.15)
             self.click_down_sound.play()
 
     def start_screen(self):

@@ -12,16 +12,16 @@
             "scaleInDock": 1
         },
         "map.tmx": {
-            "scale": 0.5,
-            "selectedLayer": 0,
+            "scale": 0.75,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 4097,
-                "y": 1313
+                "x": 3072.6666666666665,
+                "y": 1039.3333333333335
             }
         }
     },
     "last.exportedFilePath": "C:/Users/HP/Desktop/Pygame_project",
-    "last.imagePath": "C:/Users/HP/Downloads/accessories/accessories",
+    "last.imagePath": "C:/Users/HP/Downloads",
     "map.height": 64,
     "map.lastUsedExportFilter": "CSV файлы (*.csv)",
     "map.lastUsedFormat": "tmx",

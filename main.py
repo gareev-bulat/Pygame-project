@@ -230,11 +230,11 @@ class Game:
             self.color_of_health = RED
         pg.draw.rect(self.screen, (255, 255, 255), (10, 10, 155, 40), 4)
         pg.draw.rect(self.screen, self.color_of_health, (13, 13, settings.HEALTH * 150, 35))
-        text_money_counter = self.text_font.render(str(settings.MONEY_COUNTER), True, settings.DARK_BLUE)
+        text_money_counter = self.text_font.render(str(settings.MONEY_COUNTER) + "/20", True, settings.DARK_BLUE)
         if 0 <= settings.MONEY_COUNTER < 10:
-            self.screen.blit(text_money_counter, (880, 6))
+            self.screen.blit(text_money_counter, (830, 6))
         elif 10 <= settings.MONEY_COUNTER < 99:
-            self.screen.blit(text_money_counter, (860, 6))
+            self.screen.blit(text_money_counter, (810, 6))
         pg.display.flip()
 
     def game_over(self):

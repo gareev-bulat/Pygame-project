@@ -12,27 +12,31 @@
             "scaleInDock": 1
         },
         "map.tmx": {
-            "scale": 0.25,
-            "selectedLayer": 2,
+            "scale": 0.5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 856,
-                "y": 1038
+                "x": 4162,
+                "y": 797
             }
         },
         "map2.tmx": {
-            "scale": 0.5,
-            "selectedLayer": 0,
+            "scale": 0.33,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 1066,
-                "y": 1201
+                "x": 1539.3939393939395,
+                "y": 1298.4848484848485
             }
+        },
+        "spritesheet_24.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "tile_3.tsx": {
             "scaleInEditor": 1
         }
     },
     "last.exportedFilePath": "C:/Users/HP/Desktop/Pygame_project",
-    "last.imagePath": "C:/Users/HP/Downloads",
+    "last.imagePath": "C:/Users/HP/Desktop/Pygame_project",
     "map.height": 64,
     "map.lastUsedExportFilter": "CSV файлы (*.csv)",
     "map.lastUsedFormat": "tmx",
@@ -45,6 +49,7 @@
     ],
     "project": "map.tiled-project",
     "recentFiles": [
+        "spritesheet_24.tsx",
         "map2.tmx",
         "map.tmx",
         "tile_3.tsx"

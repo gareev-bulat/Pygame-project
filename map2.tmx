@@ -80,6 +80,6 @@
   <object id="2" name="wall" x="4" y="1602" width="56" height="444"/>
   <object id="3" name="wall" x="66" y="1602" width="5630" height="60"/>
   <object id="4" name="wall" x="5702" y="1602" width="56" height="446"/>
-  <object id="5" x="387" y="1531" width="64" height="64"/>
+  <object id="5" name="player" x="383" y="1547" width="64" height="64"/>
  </objectgroup>
 </map>

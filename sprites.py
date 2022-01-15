@@ -62,6 +62,8 @@ class Enemies(pg.sprite.Sprite):
             cut_sheet(load_image("EnemyBatRight.png"), 3, 1, self.frames)
             self.image = self.frames[3]
             self.rect = self.image.get_rect()
+            self.rect.x = x
+            self.rect.y = y
 
 
 class Player(pg.sprite.Sprite):

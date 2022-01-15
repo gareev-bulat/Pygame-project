@@ -41,7 +41,7 @@ def cut_sheet(sheet, columns, rows, frames):
 class Enemies(pg.sprite.Sprite):
     def __init__(self, game, x, y, tip):
         pg.mixer.init()
-        self.groups = game.all_sprites
+        self.groups = game.enemies
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.clock = pg.time.Clock()
@@ -124,7 +124,7 @@ class Player(pg.sprite.Sprite):
                 settings.HEALTH = settings.HEALTH + 0.2
                 hits_with_medthings[0].kill()
                 if settings.HEALTH > 1.0:
-                    settings.HEALTH = 1.0
+                    settings.HEALTH= 1.0
         self.vx, self.vy = 0, 0
         keys = pg.key.get_pressed()
         mods = pg.key.get_mods()
@@ -307,3 +307,4 @@ class Shipp(pg.sprite.Sprite):
         self.y = y
         self.rect.x = x
         self.rect.y = y
+

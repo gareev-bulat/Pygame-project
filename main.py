@@ -176,6 +176,8 @@ class Game:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
         for sprite in self.medthings:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
+        for sprite in self.enemies:
+            self.screen.blit(sprite.image, self.camera.apply(sprite))
         pg.display.set_caption('{}'.format(round(self.clock.get_fps(), 2)))
         self.screen_panels()
         pg.display.flip()
@@ -188,7 +190,8 @@ class Game:
         self.money = pg.sprite.Group()
         self.shipp = pg.sprite.Group()
         self.medthings = pg.sprite.Group()
-        self.enemy_bat = pg.sprite.Group()
+        self.enemies = pg.sprite.Group()
+        self.weapons = pg.sprite.Group()
         # for row, tiles in enumerate(self.map.data):
         #     for col, tile in enumerate(tiles):
         #         if tile == '1':

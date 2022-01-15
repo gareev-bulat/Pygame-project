@@ -2,6 +2,7 @@ import pygame as pg
 import settings
 from random import choice
 import os, sys
+from pygame import time
 
 
 # class Wall(pg.sprite.Sprite):
@@ -38,7 +39,7 @@ def cut_sheet(sheet, columns, rows, frames):
 
 
 class Enemies(pg.sprite.Sprite):
-    def __init__(self, game, x, y):
+    def __init__(self, game, x, y, tip):
         pg.mixer.init()
         self.groups = game.all_sprites
         pg.sprite.Sprite.__init__(self, self.groups)
@@ -47,18 +48,20 @@ class Enemies(pg.sprite.Sprite):
         self.frames = []
         self.first_count = 0
         self.second_count = 0
-        cut_sheet(load_image("testPersonRight.png"), 4, 1, self.frames)
-        cut_sheet(load_image("testPersonLeft.png"), 4, 1, self.frames)
-        self.image = self.frames[4]
-        self.rect = self.image.get_rect()
         self.vx, self.vy = 0, 0
         self.make_jump = False
         self.vniz = False
         self.onLadder = False
         self.jump_counter = 50
         self.levitating = 0
-        self.x = x
-        self.y = y
+        self.tip = tip
+        if self.tip == 'bat':
+            self.x = x
+            self.y = y
+            cut_sheet(load_image("EnemyBatLeft.png"), 3, 1, self.frames)
+            cut_sheet(load_image("EnemyBatRight.png"), 3, 1, self.frames)
+            self.image = self.frames[3]
+            self.rect = self.image.get_rect()
 
 
 class Player(pg.sprite.Sprite):
@@ -72,11 +75,11 @@ class Player(pg.sprite.Sprite):
         self.game = game
         self.clock = pg.time.Clock()
         self.frames = []
-        self.health = 1.0
         self.first_count = 0
         self.second_count = 0
         cut_sheet(load_image("testPersonRight.png"), 4, 1, self.frames)
         cut_sheet(load_image("testPersonLeft.png"), 4, 1, self.frames)
+        cut_sheet(load_image("testPersonClimb.png"), 4, 1, self.frames)
         self.image = self.frames[4]
         self.rect = self.image.get_rect()
         self.vx, self.vy = 0, 0
@@ -87,6 +90,7 @@ class Player(pg.sprite.Sprite):
         self.jump_counter = 50
         self.levitating = 0
         self.count_damage_shipps = 0
+        self.money_counter = 50
         self.x = x
         self.y = y
 
@@ -96,9 +100,9 @@ class Player(pg.sprite.Sprite):
         hits_with_money = pg.sprite.spritecollide(self, self.game.money, False)
         hits_with_shipp = pg.sprite.spritecollide(self, self.game.shipp, False)
         hits_with_medthings = pg.sprite.spritecollide(self, self.game.medthings, False)
-        if len(hits_with_money) == 1:
+        if len(hits_with_money) != 0:
             hits_with_money[0].kill()
-            settings.MONEY_COUNTER += 1
+            settings.MONEY_COUNTER += len(hits_with_money)
             self.sounds('coin')
         if len(hits_with_ladders) != 0:
             self.onLadder = True
@@ -108,19 +112,19 @@ class Player(pg.sprite.Sprite):
             self.count_damage_shipps = round(self.count_damage_shipps + 0.0625, 4)
             for hit in hits_with_shipp:
                 if self.count_damage_shipps == 0.25 or self.count_damage_shipps % 1 == 0:
-                    self.health -= settings.ENEMIES_DAMAGE['shipp']
+                    settings.HEALTH -= settings.ENEMIES_DAMAGE['shipp']
                     self.sounds('damage_to_player')
         elif len(hits_with_shipp) == 0:
             self.count_damage_shipps = 0
         if hits_with_medthings:
             if hits_with_medthings[0] == MedKit:
-                self.health = 1.0
+                settings.HEALTH = 1.0
                 hits_with_medthings[0].kill()
             else:
-                self.health = self.health + 0.2
+                settings.HEALTH = settings.HEALTH + 0.2
                 hits_with_medthings[0].kill()
-                if self.health > 1.0:
-                    self.health = 1.0
+                if settings.HEALTH > 1.0:
+                    settings.HEALTH = 1.0
         self.vx, self.vy = 0, 0
         keys = pg.key.get_pressed()
         mods = pg.key.get_mods()
@@ -140,9 +144,10 @@ class Player(pg.sprite.Sprite):
                 self.second_count = round(self.second_count + 0.25, 3)
                 if int(self.second_count) == self.second_count:
                     self.image = self.frames[:4][int(self.second_count) % 4]
-        if keys[pg.K_UP] or keys[pg.K_w]:
-            if self.onLadder:
+        if self.onLadder:
+            if keys[pg.K_UP] or keys[pg.K_w]:
                 self.y = self.y - 10
+            self.image = self.frames[8:12][int(self.first_count) % 4]
         if keys[pg.K_DOWN] or keys[pg.K_s]:
             self.vy = settings.PLAYER_SPEED
         if mods & pg.KMOD_SHIFT and (keys[pg.K_LEFT] or keys[pg.K_a]):

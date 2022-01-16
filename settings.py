@@ -20,4 +20,6 @@ HEALTH = 1.0
 MONEY_COUNTER = 0
 FONT = 'serif'
 ENEMIES_DAMAGE = {'shipp': 0.04}
+PLAYER_DAMAGE = {'sword': 0.04}
+
 

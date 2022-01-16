@@ -252,6 +252,8 @@ class Game:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
         for sprite in self.enemies:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
+        for sprite in self.weapons:
+            self.screen.blit(sprite.image, self.camera.apply(sprite))
         pg.display.set_caption('{}'.format(round(self.clock.get_fps(), 2)))
         self.screen_panels()
         pg.display.flip()
@@ -292,6 +294,8 @@ class Game:
                 MedKit(self, object.x, object.y, object.width, object.height)
             elif object.name == 'bandage':
                 Bandage(self, object.x, object.y, object.width, object.height)
+            elif object.name == 'sword':
+                Sword(self, object.x, object.y, object.width, object.height)
 
         self.camera = Camera(self.map.width, self.map.height)
 

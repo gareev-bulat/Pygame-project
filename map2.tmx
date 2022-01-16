@@ -82,7 +82,7 @@
   <object id="4" name="wall" x="5702" y="1602" width="56" height="446"/>
   <object id="5" name="player" x="384" y="1538" width="64" height="64"/>
   <object id="6" name="wall" x="669" y="1472" width="290" height="128"/>
-  <object id="15" name="ladder" x="805" y="1097" width="66" height="375"/>
+  <object id="15" name="ladder" x="805" y="1097" width="69" height="375"/>
   <object id="16" name="wall" x="896" y="1088" width="448" height="55"/>
  </objectgroup>
 </map>

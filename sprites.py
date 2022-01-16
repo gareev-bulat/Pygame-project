@@ -318,7 +318,19 @@ class Shipp(pg.sprite.Sprite):
         self.rect = pg.Rect(x, y, x1, y1)
         # self.hit_rect = self.rect
         self.x = x
-        self.damage = 0.04
+        self.y = y
+        self.rect.x = x
+        self.rect.y = y
+
+class Sword(pg.sprite.Sprite):
+    def __init__(self, game, x, y, x1, y1):
+        self.groups = game.money
+        pg.sprite.Sprite.__init__(self, self.groups)
+        image = load_image('sword_1.jpg')
+        self.image = pg.transform.scale(image, (120, 40))
+        self.rect = pg.Rect(x, y, x1, y1)
+        # self.hit_rect = self.rect
+        self.x = x
         self.y = y
         self.rect.x = x
         self.rect.y = y

@@ -12,19 +12,19 @@
             "scaleInDock": 1
         },
         "map.tmx": {
-            "scale": 0.5,
-            "selectedLayer": 1,
+            "scale": 0.75,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 4162,
-                "y": 797
+                "x": 1867.3333333333333,
+                "y": 1291.3333333333333
             }
         },
         "map2.tmx": {
-            "scale": 0.33,
+            "scale": 0.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 1539.3939393939395,
-                "y": 1298.4848484848485
+                "x": 1371,
+                "y": 1283
             }
         },
         "spritesheet_24.tsx": {

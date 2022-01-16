@@ -31,10 +31,6 @@ class Levels:
     def __init__(self):
         pg.mixer.init()
         self.vol = 0.15
-        pg.mixer.music.load('Menu/menu_music.mp3')
-        pg.mixer.music.play(-5, 7.3, 10)
-        pg.mixer.music.play(-1)
-        pg.mixer.music.set_volume(self.vol)
         self.clock = pg.time.Clock()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         self.buttons = [load_image('level_1.png'),
@@ -52,7 +48,6 @@ class Levels:
 
     def check_pos(self, pos):
         x, y = pos[0], pos[1]
-        print(x, y)
         if 20 <= x <= 49 and 20 <= y <= 72:
             return 'level_1'
         if 76 <= x <= 112 and 20 <= y <= 72:
@@ -95,15 +90,19 @@ class Levels:
                         self.map_name = 'map.tmx'
                     elif self.check_pos(pg.mouse.get_pos()) == 'level_2':
                         self.map_name = 'map2.tmx'
-                    game = Game(self.map_name)
-                    running = True
-                    game.new()
-                    while running:
-                        game.run()
+                    if self.map_name != '':
+                        self.start_game()
                 elif (event.type == pg.KEYDOWN or event.type == pg.MOUSEBUTTONDOWN):
                     self.click_button_music('down')
             pg.display.flip()
             self.clock.tick(FPS)
+
+    def start_game(self):
+        game = Game(self.map_name)
+        running = True
+        game.new()
+        while running:
+            game.run()
 
 class Menu:
 

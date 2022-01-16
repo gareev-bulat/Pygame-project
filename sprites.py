@@ -64,6 +64,10 @@ class Enemies(pg.sprite.Sprite):
             self.rect = self.image.get_rect()
             self.rect.x = x
             self.rect.y = y
+        self.do()
+
+    def do(self):
+        pass
 
 
 class Player(pg.sprite.Sprite):
@@ -93,6 +97,7 @@ class Player(pg.sprite.Sprite):
         self.levitating = 0
         self.count_damage_shipps = 0
         self.money_counter = 50
+        self.rotation = 'left'
         self.x = x
         self.y = y
 
@@ -116,6 +121,14 @@ class Player(pg.sprite.Sprite):
                 if self.count_damage_shipps == 0.25 or self.count_damage_shipps % 1 == 0:
                     settings.HEALTH -= settings.ENEMIES_DAMAGE['shipp']
                     self.sounds('damage_to_player')
+                    if self.rotation == 'left':
+                        for i in range(140):
+                            self.x += 1
+                            self.y -= 1
+                    else:
+                        for i in range(140):
+                            self.x -= 1
+                            self.y -= 1
         elif len(hits_with_shipp) == 0:
             self.count_damage_shipps = 0
         if hits_with_medthings:
@@ -137,6 +150,7 @@ class Player(pg.sprite.Sprite):
                 self.first_count = round(self.first_count + 0.25, 2)
                 if int(self.first_count) == self.first_count:
                     self.image = self.frames[4:8][int(self.first_count) % 4]
+            self.rotation = 'left'
             self.vx = -settings.PLAYER_SPEED
         if (keys[pg.K_RIGHT] and not keys[pg.K_LEFT]) or (keys[pg.K_d] and not keys[pg.K_a]):
             if self.make_jump:
@@ -146,6 +160,7 @@ class Player(pg.sprite.Sprite):
                 self.second_count = round(self.second_count + 0.25, 3)
                 if int(self.second_count) == self.second_count:
                     self.image = self.frames[:4][int(self.second_count) % 4]
+            self.rotation = 'right'
         if self.onLadder:
             if keys[pg.K_UP] or keys[pg.K_w]:
                 self.y = self.y - 10

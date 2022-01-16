@@ -29,13 +29,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05ee5613-275b-4909-a95c-f5aec8c90f5b" name="Default Changelist" comment="climbing sprite.">
+    <list default="true" id="05ee5613-275b-4909-a95c-f5aec8c90f5b" name="Default Changelist" comment="update map1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map.tiled-session" beforeDir="false" afterPath="$PROJECT_DIR$/map.tiled-session" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/map.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map2.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/map2.tmx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sprites.py" beforeDir="false" afterPath="$PROJECT_DIR$/sprites.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spritesheet_24.png" beforeDir="false" afterPath="$PROJECT_DIR$/spritesheet_24.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -314,7 +312,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642274063924</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="update map1">
+      <created>1642285288519</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1642285288521</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -358,7 +363,8 @@
     <MESSAGE value="damage to player, add map, add shipp(enemy)" />
     <MESSAGE value="climbing sprite" />
     <MESSAGE value="climbing sprite." />
-    <option name="LAST_COMMIT_MESSAGE" value="climbing sprite." />
+    <MESSAGE value="update map1" />
+    <option name="LAST_COMMIT_MESSAGE" value="update map1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="508" y="236" key="#Notifications" timestamp="1641634733439">
@@ -377,26 +383,26 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1641588696858" />
-    <state width="972" height="175" key="GridCell.Tab.0.bottom" timestamp="1642285052524">
+    <state width="970" height="111" key="GridCell.Tab.0.bottom" timestamp="1642322108435">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="977" height="68" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1642244380552" />
-    <state width="972" height="175" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1642285052524" />
-    <state width="972" height="175" key="GridCell.Tab.0.center" timestamp="1642285052524">
+    <state width="970" height="111" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1642322108435" />
+    <state width="970" height="111" key="GridCell.Tab.0.center" timestamp="1642322108434">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="977" height="68" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1642244380552" />
-    <state width="972" height="175" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1642285052524" />
-    <state width="972" height="175" key="GridCell.Tab.0.left" timestamp="1642285052519">
+    <state width="970" height="111" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1642322108434" />
+    <state width="970" height="111" key="GridCell.Tab.0.left" timestamp="1642322108434">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="977" height="68" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1642244380552" />
-    <state width="972" height="175" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1642285052519" />
-    <state width="972" height="175" key="GridCell.Tab.0.right" timestamp="1642285052524">
+    <state width="970" height="111" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1642322108434" />
+    <state width="970" height="111" key="GridCell.Tab.0.right" timestamp="1642322108435">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="977" height="68" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1642244380552" />
-    <state width="972" height="175" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1642285052524" />
+    <state width="970" height="111" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1642322108435" />
     <state width="757" height="151" key="GridCell.Tab.1.bottom" timestamp="1641641032983">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -429,11 +435,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="555" y="128" key="VCS.ChangeListViewerDialog/0.0.1536.824@0.0.1536.824" timestamp="1642075779763" />
-    <state x="361" y="152" key="Vcs.Push.Dialog.v2" timestamp="1642267910509">
+    <state x="361" y="152" key="Vcs.Push.Dialog.v2" timestamp="1642285343294">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1642110174597" />
-    <state x="361" y="152" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1642267910509" />
+    <state x="361" y="152" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1642285343294" />
     <state x="492" y="146" key="VcsDiffUtil.ChangesDialog" timestamp="1639898958136">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

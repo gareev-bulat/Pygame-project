@@ -27,6 +27,83 @@ class Options:
     def event(self):
         self.screen.blit(self.screen2, (WIDTH / 2 - OPTIONS_WIDTH / 2, HEIGHT / 2 - OPTIONS_HEIGHT / 2))
 
+class Levels:
+    def __init__(self):
+        pg.mixer.init()
+        self.vol = 0.15
+        pg.mixer.music.load('Menu/menu_music.mp3')
+        pg.mixer.music.play(-5, 7.3, 10)
+        pg.mixer.music.play(-1)
+        pg.mixer.music.set_volume(self.vol)
+        self.clock = pg.time.Clock()
+        self.screen = pg.display.set_mode((WIDTH, HEIGHT))
+        self.buttons = [load_image('level_1.png'),
+                        load_image('level_2.png')]
+        self.buttons_coords= {'level1': (10, 10),
+                              'level2': (64, 10)}
+        self.click_up_sound = pg.mixer.Sound("Menu/click_up.mp3")
+        self.click_down_sound = pg.mixer.Sound("Menu/click_down.mp3")
+        self.map_name = ''
+
+
+    def terminate(self):
+        pg.quit()
+        sys.exit()
+
+    def check_pos(self, pos):
+        x, y = pos[0], pos[1]
+        print(x, y)
+        if 20 <= x <= 49 and 20 <= y <= 72:
+            return 'level_1'
+        if 76 <= x <= 112 and 20 <= y <= 72:
+            return 'level_2'
+        return False
+
+    def click_button_music(self, state):
+        if state == 'up':
+            self.click_up_sound.set_volume(0.15)
+            self.click_up_sound.play()
+        elif state == 'down':
+            self.click_down_sound.set_volume(0.15)
+            self.click_down_sound.play()
+
+    def choice_menu(self):
+
+        fon = pg.transform.scale(load_image('fon.jpg'), (WIDTH, HEIGHT))
+        self.screen.blit(fon, (0, 0))
+        level_1 = self.buttons[0]
+        level_2 = self.buttons[1]
+        self.screen.blit(level_1, self.buttons_coords['level1'])
+        self.screen.blit(level_2, self.buttons_coords['level2'])
+
+        while True:
+            for event in pg.event.get():
+                if event.type == pg.KEYDOWN:
+                    if event.key == pg.K_MINUS:
+                        if self.vol != 0:
+                            self.vol = self.vol - 0.1
+                            pg.mixer.music.set_volume(self.vol)
+                    if event.key == pg.K_EQUALS:
+                        if self.vol <= 2:
+                            self.vol = self.vol + 0.1
+                            pg.mixer.music.set_volume(self.vol)
+                if event.type == pg.QUIT:
+                    self.terminate()
+                elif (event.type == pg.KEYUP or event.type == pg.MOUSEBUTTONUP):
+                    self.click_button_music('up')
+                    if self.check_pos(pg.mouse.get_pos()) == 'level_1':
+                        self.map_name = 'map.tmx'
+                    elif self.check_pos(pg.mouse.get_pos()) == 'level_2':
+                        self.map_name = 'map2.tmx'
+                    game = Game(self.map_name)
+                    running = True
+                    game.new()
+                    while running:
+                        game.run()
+                elif (event.type == pg.KEYDOWN or event.type == pg.MOUSEBUTTONDOWN):
+                    self.click_button_music('down')
+            pg.display.flip()
+            self.clock.tick(FPS)
 
 class Menu:
 
@@ -99,11 +176,8 @@ class Menu:
                 elif (event.type == pg.KEYUP or event.type == pg.MOUSEBUTTONUP):
                     self.click_button_music('up')
                     if self.check_pos(pg.mouse.get_pos()) == 'Play':
-                        game = Game()
-                        running = True
-                        game.new()
-                        while running:
-                            game.run()
+                        levels = Levels()
+                        levels.choice_menu()
                     elif self.check_pos(pg.mouse.get_pos()) == 'Options':
                         options = Options(self.screen)
                         options.surface()
@@ -112,13 +186,13 @@ class Menu:
                         sys.exit()
                 elif (event.type == pg.KEYDOWN or event.type == pg.MOUSEBUTTONDOWN):
                     self.click_button_music('down')
-                    #return  # начинаем игру
+                      # начинаем игру
             pg.display.flip()
             self.clock.tick(FPS)
 
 
 class Game:
-    def __init__(self):
+    def __init__(self, map_name):
         pg.init()
         pg.font.init()
         self.vol = 0.15
@@ -129,6 +203,7 @@ class Game:
         self.jump_sound = [pg.mixer.Sound('jump_sound_1.mp3'), pg.mixer.Sound('jump_sound_2.mp3'), pg.mixer.Sound('jump_sound_3.mp3')]
         for sound in self.jump_sound:
             sound.set_volume(0.2)
+        self.title = map_name
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         self.money_image = load_image('money.png')
         self.health_image = load_image('health_icon.png')
@@ -137,7 +212,7 @@ class Game:
         self.load_data()
 
     def load_data(self):
-        self.map = TiledMap('map.tmx')
+        self.map = TiledMap(self.title)
         self.map_image = self.map.make_map()
         self.map_rect = self.map_image.get_rect()
 
@@ -238,7 +313,6 @@ class Game:
         pg.display.flip()
 
     def game_over(self):
-        print(settings.HEALTH)
         if settings.HEALTH <= 0:
             print('game_over')
 

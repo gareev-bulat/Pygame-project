@@ -132,14 +132,10 @@ class Player(pg.sprite.Sprite):
         elif len(hits_with_shipp) == 0:
             self.count_damage_shipps = 0
         if hits_with_medthings:
-            if hits_with_medthings[0] == MedKit:
+            settings.HEALTH = hits_with_medthings[0].health_plus + settings.HEALTH
+            hits_with_medthings[0].kill()
+            if settings.HEALTH > 1.0:
                 settings.HEALTH = 1.0
-                hits_with_medthings[0].kill()
-            else:
-                settings.HEALTH = settings.HEALTH + 0.2
-                hits_with_medthings[0].kill()
-                if settings.HEALTH > 1.0:
-                    settings.HEALTH= 1.0
         self.vx, self.vy = 0, 0
         keys = pg.key.get_pressed()
         mods = pg.key.get_mods()
@@ -292,6 +288,7 @@ class MedKit(pg.sprite.Sprite):
         self.image = pg.transform.scale(image, (64, 64))
         self.rect = pg.Rect(x, y, x1, y1)
         # self.hit_rect = self.rect
+        self.health_plus = 1.0
         self.x = x
         self.y = y
         self.rect.x = x
@@ -306,6 +303,7 @@ class Bandage(pg.sprite.Sprite):
         self.image = pg.transform.scale(image, (48, 48))
         self.rect = pg.Rect(x, y, x1, y1)
         # self.hit_rect = self.rect
+        self.health_plus = 0.2
         self.x = x
         self.y = y
         self.rect.x = x

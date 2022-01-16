@@ -29,12 +29,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05ee5613-275b-4909-a95c-f5aec8c90f5b" name="Default Changelist" comment="fix level_menu bug">
+    <list default="true" id="05ee5613-275b-4909-a95c-f5aec8c90f5b" name="Default Changelist" comment="sword">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map.tiled-session" beforeDir="false" afterPath="$PROJECT_DIR$/map.tiled-session" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/map.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map2.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/map2.tmx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sprites.py" beforeDir="false" afterPath="$PROJECT_DIR$/sprites.py" afterDir="false" />
     </list>
@@ -329,7 +327,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642326086809</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="sword">
+      <created>1642336575225</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1642336575226</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -375,7 +380,8 @@
     <MESSAGE value="climbing sprite." />
     <MESSAGE value="update map1" />
     <MESSAGE value="fix level_menu bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix level_menu bug" />
+    <MESSAGE value="sword" />
+    <option name="LAST_COMMIT_MESSAGE" value="sword" />
   </component>
   <component name="WindowStateProjectService">
     <state x="508" y="236" key="#Notifications" timestamp="1641634733439">
@@ -394,42 +400,46 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1641588696858" />
-    <state width="967" height="71" key="GridCell.Tab.0.bottom" timestamp="1642335671523">
+    <state width="962" height="156" key="GridCell.Tab.0.bottom" timestamp="1642356998123">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="977" height="68" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1642244380552" />
-    <state width="967" height="71" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1642335671523" />
-    <state width="967" height="71" key="GridCell.Tab.0.center" timestamp="1642335671523">
+    <state width="962" height="156" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1642356998123" />
+    <state width="962" height="156" key="GridCell.Tab.0.center" timestamp="1642356998122">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="977" height="68" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1642244380552" />
-    <state width="967" height="71" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1642335671523" />
-    <state width="967" height="71" key="GridCell.Tab.0.left" timestamp="1642335671520">
+    <state width="962" height="156" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1642356998122" />
+    <state width="962" height="156" key="GridCell.Tab.0.left" timestamp="1642356998122">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="977" height="68" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1642244380552" />
-    <state width="967" height="71" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1642335671520" />
-    <state width="967" height="71" key="GridCell.Tab.0.right" timestamp="1642335671523">
+    <state width="962" height="156" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1642356998122" />
+    <state width="962" height="156" key="GridCell.Tab.0.right" timestamp="1642356998123">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="977" height="68" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1642244380552" />
-    <state width="967" height="71" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1642335671523" />
-    <state width="757" height="151" key="GridCell.Tab.1.bottom" timestamp="1641641032983">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="962" height="156" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1642356998123" />
+    <state width="757" height="160" key="GridCell.Tab.1.bottom" timestamp="1642344068547">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="757" height="151" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1641641032983" />
-    <state width="757" height="151" key="GridCell.Tab.1.center" timestamp="1641641032983">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="757" height="160" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1642344068547" />
+    <state width="757" height="160" key="GridCell.Tab.1.center" timestamp="1642344068546">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="757" height="151" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1641641032983" />
-    <state width="757" height="151" key="GridCell.Tab.1.left" timestamp="1641641032983">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="757" height="160" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1642344068546" />
+    <state width="757" height="160" key="GridCell.Tab.1.left" timestamp="1642344068546">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="757" height="151" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1641641032983" />
-    <state width="757" height="151" key="GridCell.Tab.1.right" timestamp="1641641032983">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="757" height="160" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1642344068546" />
+    <state width="757" height="160" key="GridCell.Tab.1.right" timestamp="1642344068547">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="757" height="151" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1641641032983" />
+    <state width="757" height="160" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1642344068547" />
     <state x="156" y="86" key="MergeDialog" timestamp="1642189857786">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

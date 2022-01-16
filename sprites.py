@@ -101,7 +101,6 @@ class Player(pg.sprite.Sprite):
         self.x = x
         self.y = y
 
-
     def get_keys(self):
         hits_with_ladders = pg.sprite.spritecollide(self, self.game.ladders, False)
         hits_with_money = pg.sprite.spritecollide(self, self.game.money, False)
@@ -122,13 +121,13 @@ class Player(pg.sprite.Sprite):
                     settings.HEALTH -= settings.ENEMIES_DAMAGE['shipp']
                     self.sounds('damage_to_player')
                     if self.rotation == 'left':
-                        for i in range(140):
-                            self.x += 1
-                            self.y -= 1
+                        for i in range(560):
+                            self.x += 0.25 / 2
+                            self.y -= 0.25 / 2
                     else:
-                        for i in range(140):
-                            self.x -= 1
-                            self.y -= 1
+                        for i in range(560):
+                            self.x -= 0.25 / 2
+                            self.y -= 0.25 / 2
         elif len(hits_with_shipp) == 0:
             self.count_damage_shipps = 0
         if hits_with_medthings:
@@ -324,7 +323,7 @@ class Shipp(pg.sprite.Sprite):
 
 class Sword(pg.sprite.Sprite):
     def __init__(self, game, x, y, x1, y1):
-        self.groups = game.money
+        self.groups = game.sword
         pg.sprite.Sprite.__init__(self, self.groups)
         image = load_image('sword_1.jpg')
         self.image = pg.transform.scale(image, (120, 40))
@@ -334,4 +333,11 @@ class Sword(pg.sprite.Sprite):
         self.y = y
         self.rect.x = x
         self.rect.y = y
+
+    def do(self):
+        Player().x
+        self.rect.x = self.x
+
+
+
 

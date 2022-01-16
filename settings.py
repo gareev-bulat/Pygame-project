@@ -21,5 +21,5 @@ MONEY_COUNTER = 0
 FONT = 'serif'
 ENEMIES_DAMAGE = {'shipp': 0.04}
 PLAYER_DAMAGE = {'sword': 0.04}
-
+active_weapon = 'sword'
 

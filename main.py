@@ -252,7 +252,7 @@ class Game:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
         for sprite in self.enemies:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
-        for sprite in self.weapons:
+        for sprite in self.sword:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
         pg.display.set_caption('{}'.format(round(self.clock.get_fps(), 2)))
         self.screen_panels()
@@ -267,7 +267,7 @@ class Game:
         self.shipp = pg.sprite.Group()
         self.medthings = pg.sprite.Group()
         self.enemies = pg.sprite.Group()
-        self.weapons = pg.sprite.Group()
+        self.sword = pg.sprite.Group()
         # for row, tiles in enumerate(self.map.data):
         #     for col, tile in enumerate(tiles):
         #         if tile == '1':
@@ -295,7 +295,7 @@ class Game:
             elif object.name == 'bandage':
                 Bandage(self, object.x, object.y, object.width, object.height)
             elif object.name == 'sword':
-                Sword(self, object.x, object.y, object.width, object.height)
+               Sword(self, object.x, object.y, object.width, object.height)
 
         self.camera = Camera(self.map.width, self.map.height)
 
@@ -319,12 +319,19 @@ class Game:
         if settings.HEALTH <= 0:
             print('game_over')
 
+    def draw_weapons(self):
+        if settings.active_weapon == 'sword':
+            Sword().do()
+            #self.screen.blit(self.player.x)
+
+
     def run(self):
         self.dt = self.clock.tick(FPS) / 1000
         self.events()
         self.update_all()
         self.draw()
         self.screen_panels()
+        self.draw_weapons()
         self.game_over()
 
     def quit(self):

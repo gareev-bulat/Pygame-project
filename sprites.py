@@ -102,6 +102,7 @@ class Player(pg.sprite.Sprite):
         self.y = y
 
     def get_keys(self):
+        print(self.x, self.y)
         hits_with_ladders = pg.sprite.spritecollide(self, self.game.ladders, False)
         hits_with_money = pg.sprite.spritecollide(self, self.game.money, False)
         hits_with_shipp = pg.sprite.spritecollide(self, self.game.shipp, False)
@@ -324,19 +325,26 @@ class Shipp(pg.sprite.Sprite):
 class Sword(pg.sprite.Sprite):
     def __init__(self, game, x, y, x1, y1):
         self.groups = game.sword
+        self.player_x = game.player.x
+        self.player_y = game.player.y
         pg.sprite.Sprite.__init__(self, self.groups)
-        image = load_image('sword_1.jpg')
-        self.image = pg.transform.scale(image, (120, 40))
+        image = load_image('sword_2.jpg')
+        self.image = pg.transform.scale(image, (120, 60))
         self.rect = pg.Rect(x, y, x1, y1)
         # self.hit_rect = self.rect
         self.x = x
         self.y = y
         self.rect.x = x
         self.rect.y = y
+        self.do()
 
     def do(self):
-        Player().x
-        self.rect.x = self.x
+        print(self.rect.x, self.rect.y, self.player_x, self.player_y)
+        self.rect.x = self.player_x
+        self.rect.y = self.player_y
+
+       # self.rect.y += 60
+
 
 
 

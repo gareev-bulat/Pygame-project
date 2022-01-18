@@ -13,6 +13,84 @@ def load_image(name, colorkey=None):
     image = pg.image.load(fullname)
     return image
 
+class Shop:
+
+    def __init__(self):
+        pg.mixer.init()
+        self.vol = 0.15
+        self.clock = pg.time.Clock()
+        self.screen = pg.display.set_mode((WIDTH, HEIGHT))
+        self.buttons = [load_image('level_1.png'),
+                        load_image('level_2.png')]
+        self.buttons_coords= {'level1': (10, 10),
+                              'level2': (64, 10)}
+        self.click_up_sound = pg.mixer.Sound("Menu/click_up.mp3")
+        self.click_down_sound = pg.mixer.Sound("Menu/click_down.mp3")
+        self.map_name = ''
+
+
+    def terminate(self):
+        pg.quit()
+        sys.exit()
+
+    def check_pos(self, pos):
+        x, y = pos[0], pos[1]
+        if 20 <= x <= 49 and 20 <= y <= 72:
+            return 'level_1'
+        if 76 <= x <= 112 and 20 <= y <= 72:
+            return 'level_2'
+        return False
+
+    def click_button_music(self, state):
+        if state == 'up':
+            self.click_up_sound.set_volume(0.15)
+            self.click_up_sound.play()
+        elif state == 'down':
+            self.click_down_sound.set_volume(0.15)
+            self.click_down_sound.play()
+
+    def choice_menu(self):
+
+        fon = pg.transform.scale(load_image('fon.jpg'), (WIDTH, HEIGHT))
+        self.screen.blit(fon, (0, 0))
+        level_1 = self.buttons[0]
+        level_2 = self.buttons[1]
+        self.screen.blit(level_1, self.buttons_coords['level1'])
+        self.screen.blit(level_2, self.buttons_coords['level2'])
+
+        while True:
+            for event in pg.event.get():
+                if event.type == pg.KEYDOWN:
+                    if event.key == pg.K_MINUS:
+                        if self.vol != 0:
+                            self.vol = self.vol - 0.1
+                            pg.mixer.music.set_volume(self.vol)
+                    if event.key == pg.K_EQUALS:
+                        if self.vol <= 2:
+                            self.vol = self.vol + 0.1
+                            pg.mixer.music.set_volume(self.vol)
+                if event.type == pg.QUIT:
+                    self.terminate()
+                elif (event.type == pg.KEYUP or event.type == pg.MOUSEBUTTONUP):
+                    self.click_button_music('up')
+                    if self.check_pos(pg.mouse.get_pos()) == 'level_1':
+                        self.map_name = 'map.tmx'
+                    elif self.check_pos(pg.mouse.get_pos()) == 'level_2':
+                        self.map_name = 'map2.tmx'
+                    if self.map_name != '':
+                        self.start_game()
+                elif (event.type == pg.KEYDOWN or event.type == pg.MOUSEBUTTONDOWN):
+                    self.click_button_music('down')
+            pg.display.flip()
+            self.clock.tick(FPS)
+
+    def start_game(self):
+        game = Game(self.map_name)
+        running = True
+        game.new()
+        while running:
+            game.run()
+
 class Options:
 
     def __init__(self, screen):
@@ -117,10 +195,12 @@ class Menu:
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         self.buttons = [load_image('Menu/play.png'),
                         load_image('Menu/options.png'),
-                        load_image('Menu/exit.png')]
+                        load_image('Menu/exit.png'),
+                        load_image('Menu/shop.png')]
         self.buttons_sizes = {'play': (221, 100), 
                               'options': (326, 79), 
-                              'exit': (204, 79)}
+                              'exit': (204, 79),
+                              'shop': (211, 100)}
         self.click_up_sound = pg.mixer.Sound("Menu/click_up.mp3")
         self.click_down_sound = pg.mixer.Sound("Menu/click_down.mp3")
 
@@ -131,9 +211,12 @@ class Menu:
 
     def check_pos(self, pos):
         x, y = pos[0], pos[1]
-        if 409 <= x <= 615 and 374 <= y <= 450:
+        print(x, y)
+        if 409 <= x <= 609 and 298 <= y <= 344:
             return 'Play'
-        elif 357 <= x <= 661 and 474 <= y <= 533:
+        elif 414 <= x <= 598 and 391 <= y <= 440:
+            return 'Shop'
+        elif 358 <= x <= 662 and 485 <= y <= 538:
             return 'Options'
         elif 414 <= x <= 600 and 574 <= y <= 629:
             return 'Exit'
@@ -154,9 +237,12 @@ class Menu:
         button_1 = self.buttons[0]
         button_2 = self.buttons[1]
         button_3 = self.buttons[2]
-        self.screen.blit(button_1, (WIDTH / 2 - (self.buttons_sizes['play'][0] // 2), HEIGHT / 2 - 20))
-        self.screen.blit(button_2, (WIDTH / 2 - (self.buttons_sizes['options'][0] // 2), HEIGHT / 2 + 80))
+        button_4 = self.buttons[3]
+        self.screen.blit(button_1, (WIDTH / 2 - (self.buttons_sizes['play'][0] // 2), HEIGHT / 2 - 100))
+        self.screen.blit(button_2, (WIDTH / 2 - (self.buttons_sizes['options'][0] // 2), HEIGHT / 2 + 90))
         self.screen.blit(button_3, (WIDTH / 2 - (self.buttons_sizes['exit'][0] // 2), HEIGHT / 2 + 100 + 79))
+        self.screen.blit(button_4, (WIDTH / 2 - (self.buttons_sizes['shop'][0] // 2 + 5), HEIGHT / 2 - 5))
+
 
 
         while True:
@@ -177,6 +263,9 @@ class Menu:
                     if self.check_pos(pg.mouse.get_pos()) == 'Play':
                         levels = Levels()
                         levels.choice_menu()
+                    elif self.check_pos(pg.mouse.get_pos()) == 'Shop':
+                        shop = Shop()
+                        shop.choice_menu()
                     elif self.check_pos(pg.mouse.get_pos()) == 'Options':
                         options = Options(self.screen)
                         options.surface()
@@ -295,7 +384,8 @@ class Game:
             elif object.name == 'bandage':
                 Bandage(self, object.x, object.y, object.width, object.height)
             elif object.name == 'sword':
-               Sword(self, object.x, object.y, object.width, object.height)
+                Sword(self, object.x, object.y, object.width, object.height)
+
 
         self.camera = Camera(self.map.width, self.map.height)
 
@@ -319,19 +409,12 @@ class Game:
         if settings.HEALTH <= 0:
             print('game_over')
 
-    def draw_weapons(self):
-        if settings.active_weapon == 'sword':
-            Sword().do()
-            #self.screen.blit(self.player.x)
-
-
     def run(self):
         self.dt = self.clock.tick(FPS) / 1000
         self.events()
         self.update_all()
         self.draw()
         self.screen_panels()
-        self.draw_weapons()
         self.game_over()
 
     def quit(self):

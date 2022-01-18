@@ -3,7 +3,9 @@ import os, sys
 from settings import *
 from sprites import *
 from map import *
+import sqlite3
 
+pg.font.init()
 
 def load_image(name, colorkey=None):
     fullname = name
@@ -203,6 +205,8 @@ class Menu:
                               'shop': (211, 100)}
         self.click_up_sound = pg.mixer.Sound("Menu/click_up.mp3")
         self.click_down_sound = pg.mixer.Sound("Menu/click_down.mp3")
+        self.con = sqlite3.connect("database.db")
+        self.text_font = pg.font.SysFont(settings.FONT, 35)
 
 
     def terminate(self):
@@ -242,7 +246,10 @@ class Menu:
         self.screen.blit(button_2, (WIDTH / 2 - (self.buttons_sizes['options'][0] // 2), HEIGHT / 2 + 90))
         self.screen.blit(button_3, (WIDTH / 2 - (self.buttons_sizes['exit'][0] // 2), HEIGHT / 2 + 100 + 79))
         self.screen.blit(button_4, (WIDTH / 2 - (self.buttons_sizes['shop'][0] // 2 + 5), HEIGHT / 2 - 5))
-
+        self.screen.blit(load_image('money.png'), (10, 10))
+        text = self.work_with_base()
+        menu_money_counter = self.text_font.render(text, True, settings.DARK_BLUE)
+        self.screen.blit(menu_money_counter, (50, 5))
 
 
         while True:
@@ -274,15 +281,19 @@ class Menu:
                         sys.exit()
                 elif (event.type == pg.KEYDOWN or event.type == pg.MOUSEBUTTONDOWN):
                     self.click_button_music('down')
-                      # начинаем игру
+                    # начинаем игру
             pg.display.flip()
             self.clock.tick(FPS)
+
+    def work_with_base(self):
+        cur = self.con.cursor()
+        result = cur.execute("""SELECT * FROM money_counter""").fetchall()
+        return str(result[0][0])
 
 
 class Game:
     def __init__(self, map_name):
         pg.init()
-        pg.font.init()
         self.vol = 0.15
         pg.mixer.music.load('menuMusicNeedToChange.mp3')
         pg.mixer.music.play(-5, 7.3, 10)
@@ -297,6 +308,7 @@ class Game:
         self.health_image = load_image('health_icon.png')
         self.text_font = pg.font.SysFont(settings.FONT, 35)
         self.clock = pg.time.Clock()
+        self.con = sqlite3.connect("database.db")
         self.load_data()
 
     def load_data(self):
@@ -341,8 +353,8 @@ class Game:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
         for sprite in self.enemies:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
-        for sprite in self.sword:
-            self.screen.blit(sprite.image, self.camera.apply(sprite))
+        #for sprite in self.sword:
+        #    self.screen.blit(sprite.image, self.camera.apply(sprite))
         pg.display.set_caption('{}'.format(round(self.clock.get_fps(), 2)))
         self.screen_panels()
         pg.display.flip()
@@ -403,11 +415,16 @@ class Game:
             self.screen.blit(text_money_counter, (830, 6))
         elif 10 <= settings.MONEY_COUNTER < 99:
             self.screen.blit(text_money_counter, (810, 6))
+        if settings.HEALTH <= 0:
+            menu_money_counter = self.text_font.render('GAME OVER', True, settings.DARK_BLUE)
+            self.screen.blit(menu_money_counter, (100, 100))
         pg.display.flip()
 
-    def game_over(self):
-        if settings.HEALTH <= 0:
-            print('game_over')
+    def work_with_base(self):
+        cur = self.con.cursor()
+        result = cur.execute("""SELECT * FROM money_counter""").fetchall()
+        cur.execute('UPDATE money_counter SET update_money=?', [int(result[0][0]) + settings.MONEY_COUNTER])
+        self.con.commit()
 
     def run(self):
         self.dt = self.clock.tick(FPS) / 1000
@@ -415,7 +432,6 @@ class Game:
         self.update_all()
         self.draw()
         self.screen_panels()
-        self.game_over()
 
     def quit(self):
         pg.quit()

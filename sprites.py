@@ -1,5 +1,6 @@
 import pygame as pg
 import settings
+import sqlite3
 from random import choice
 import os, sys
 from pygame import time
@@ -100,6 +101,12 @@ class Player(pg.sprite.Sprite):
         self.rotation = 'left'
         self.x = x
         self.y = y
+        self.con = sqlite3.connect("database.db")
+
+    def work_with_base(self):
+        cur = self.con.cursor()
+        result = cur.execute("""SELECT * FROM money_counter""").fetchall()
+        return str(result[0][0])
 
     def get_keys(self):
         print(self.x, self.y)

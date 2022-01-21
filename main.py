@@ -248,6 +248,7 @@ class Menu:
         self.screen.blit(button_4, (WIDTH / 2 - (self.buttons_sizes['shop'][0] // 2 + 5), HEIGHT / 2 - 5))
         self.screen.blit(load_image('money.png'), (10, 10))
         text = self.work_with_base()
+        print(text)
         menu_money_counter = self.text_font.render(text, True, settings.DARK_BLUE)
         self.screen.blit(menu_money_counter, (50, 5))
 
@@ -308,6 +309,7 @@ class Game:
         self.health_image = load_image('health_icon.png')
         self.text_font = pg.font.SysFont(settings.FONT, 35)
         self.clock = pg.time.Clock()
+        self.flag = True
         self.con = sqlite3.connect("database.db")
         self.load_data()
 
@@ -418,6 +420,9 @@ class Game:
         if settings.HEALTH <= 0:
             menu_money_counter = self.text_font.render('GAME OVER', True, settings.DARK_BLUE)
             self.screen.blit(menu_money_counter, (100, 100))
+            if self.flag:
+                self.work_with_base()
+                self.flag = False
         pg.display.flip()
 
     def work_with_base(self):

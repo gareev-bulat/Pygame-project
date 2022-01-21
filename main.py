@@ -4,6 +4,7 @@ from settings import *
 from sprites import *
 from map import *
 import sqlite3
+import random
 
 pg.font.init()
 
@@ -311,7 +312,14 @@ class Game:
         self.clock = pg.time.Clock()
         self.flag = True
         self.con = sqlite3.connect("database.db")
+        self.snow_list = []
         self.load_data()
+        self.prepare_snow()
+
+    def prepare_snow(self):
+        for i in range(400):
+            snow_x, snow_y = random.randint(0, WIDTH - 5), random.randint(-settings.HEIGHT, 20)
+            self.snow_list.append([snow_x, snow_y, random.choice((0.3, 0.5))])
 
     def load_data(self):
         self.map = TiledMap(self.title)
@@ -342,10 +350,10 @@ class Game:
 
     def draw(self):
         self.screen.fill(BLACK)
-
         self.screen.blit(self.map_image, self.camera.apply_rect_for_map(self.map_rect))
         self.screen.blit(self.health_image, (170, 10))
         self.screen.blit(self.money_image, (900, 10))
+
 
         for sprite in self.all_sprites:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
@@ -357,9 +365,17 @@ class Game:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
         #for sprite in self.sword:
         #    self.screen.blit(sprite.image, self.camera.apply(sprite))
+        self.snow_animation()
         pg.display.set_caption('{}'.format(round(self.clock.get_fps(), 2)))
         self.screen_panels()
         pg.display.flip()
+
+    def snow_animation(self):
+        for i in range(len(self.snow_list)):
+            if self.snow_list[i][1] >= settings.HEIGHT:
+                self.snow_list[i][1] = random.randint(-settings.HEIGHT, 20)
+            pg.draw.circle(self.screen, 'white', (self.snow_list[i][0], self.snow_list[i][1]), 2)
+            self.snow_list[i][1] += self.snow_list[i][2]
 
 
     def new(self):
@@ -418,12 +434,15 @@ class Game:
         elif 10 <= settings.MONEY_COUNTER < 99:
             self.screen.blit(text_money_counter, (810, 6))
         if settings.HEALTH <= 0:
-            menu_money_counter = self.text_font.render('GAME OVER', True, settings.DARK_BLUE)
-            self.screen.blit(menu_money_counter, (100, 100))
-            if self.flag:
-                self.work_with_base()
-                self.flag = False
+            self.game_over()
         pg.display.flip()
+
+    def game_over(self):
+        Game_Over(self.screen).do()
+        if self.flag:
+            self.work_with_base()
+            self.flag = False
+
 
     def work_with_base(self):
         cur = self.con.cursor()

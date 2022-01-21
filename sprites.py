@@ -109,7 +109,6 @@ class Player(pg.sprite.Sprite):
         return str(result[0][0])
 
     def get_keys(self):
-        print(self.x, self.y)
         hits_with_ladders = pg.sprite.spritecollide(self, self.game.ladders, False)
         hits_with_money = pg.sprite.spritecollide(self, self.game.money, False)
         hits_with_shipp = pg.sprite.spritecollide(self, self.game.shipp, False)
@@ -346,13 +345,23 @@ class Sword(pg.sprite.Sprite):
         self.do()
 
     def do(self):
-        print(self.rect.x, self.rect.y, self.player_x, self.player_y)
         self.rect.x = self.player_x
         self.rect.y = self.player_y
 
        # self.rect.y += 60
 
+class Game_Over:
 
+    def __init__(self, screen):
+        self.screen = screen
+        self.all_sprites = pg.sprite.Group()
+        self.sprite = pg.sprite.Sprite()
+        self.sprite.image = load_image("gameover.png")
+        self.sprite.rect = self.sprite.image.get_rect()
+        self.all_sprites.add(self.sprite)
+        self.sprite.rect.x = settings.WIDTH / 2 - 300
+        self.sprite.rect.y = settings.HEIGHT / 2 - 300
 
-
+    def do(self):
+        self.all_sprites.draw(self.screen)
 

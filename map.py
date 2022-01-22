@@ -4,17 +4,6 @@ from settings import *
 from settings import *
 
 
-# class Map:
-#     def __init__(self, filename):
-#         self.data = []
-#         with open(filename, 'r') as file:
-#             for line in file:
-#                 self.data.append(line.strip())
-#
-#         self.width = len(self.data[0]) * TILESIZE
-#         self.height = len(self.data) * TILESIZE
-
-
 class TiledMap:
     def __init__(self, filename):
         self.tmx = pytmx.load_pygame(filename, pixelalpha=True)

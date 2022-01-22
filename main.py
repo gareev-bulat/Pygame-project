@@ -194,6 +194,7 @@ class Menu:
         pg.mixer.music.play(-5, 7.3, 10)
         pg.mixer.music.play(-1)
         pg.mixer.music.set_volume(self.vol)
+        settings.MONEY_COUNTER = 0
         self.clock = pg.time.Clock()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         self.buttons = [load_image('Menu/play.png'),
@@ -216,7 +217,6 @@ class Menu:
 
     def check_pos(self, pos):
         x, y = pos[0], pos[1]
-        print(x, y)
         if 409 <= x <= 609 and 298 <= y <= 344:
             return 'Play'
         elif 414 <= x <= 598 and 391 <= y <= 440:
@@ -249,7 +249,6 @@ class Menu:
         self.screen.blit(button_4, (WIDTH / 2 - (self.buttons_sizes['shop'][0] // 2 + 5), HEIGHT / 2 - 5))
         self.screen.blit(load_image('money.png'), (10, 10))
         text = self.work_with_base()
-        print(text)
         menu_money_counter = self.text_font.render(text, True, settings.DARK_BLUE)
         self.screen.blit(menu_money_counter, (50, 5))
 
@@ -308,6 +307,7 @@ class Game:
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         self.money_image = load_image('money.png')
         self.health_image = load_image('health_icon.png')
+        self.pause_btn = pg.transform.scale(load_image('pause.png'), (70, 70))
         self.text_font = pg.font.SysFont(settings.FONT, 35)
         self.clock = pg.time.Clock()
         self.flag = True
@@ -337,8 +337,7 @@ class Game:
                 running = False
             if event.type == pg.KEYDOWN:
                 if event.key == pg.K_ESCAPE:
-                    running = False
-                    self.quit()
+                    self.pause()
                 if event.key == pg.K_MINUS:
                     if self.vol != 0:
                         self.vol = self.vol - 0.1
@@ -347,12 +346,16 @@ class Game:
                     if self.vol <= 2:
                         self.vol = self.vol + 0.1
                         pg.mixer.music.set_volume(self.vol)
+            if event.type == pg.MOUSEBUTTONDOWN:
+                pos = pg.mouse.get_pos()
+                if 956 < pos[0] < 1016 and 16 < pos[1] < 66:
+                    self.pause()
 
     def draw(self):
-        self.screen.fill(BLACK)
         self.screen.blit(self.map_image, self.camera.apply_rect_for_map(self.map_rect))
         self.screen.blit(self.health_image, (170, 10))
         self.screen.blit(self.money_image, (900, 10))
+        self.screen.blit(self.pause_btn, (950, 5))
 
 
         for sprite in self.all_sprites:
@@ -456,6 +459,30 @@ class Game:
         self.update_all()
         self.draw()
         self.screen_panels()
+
+    def print_text(self, message, x, y, font_color=(0, 0, 0), font_type='shrift.otf', font_size=50):
+        font_type = pg.font.Font(font_type, font_size)
+        text = font_type.render(message, True, font_color)
+        self.screen.blit(text, (x, y))
+
+    def pause(self):
+        paused = True
+        while paused:
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    pg.quit()
+                if event.type == pg.MOUSEBUTTONDOWN:
+                    pos = pg.mouse.get_pos()
+                    if 355 < pos[0] < 698 and 318 < pos[1] < 345:
+                        paused = False
+                    elif 281 < pos[0] < 770 and 365 < pos[1] < 395:
+                        menu = Menu()
+                        menu.start_screen()
+            self.print_text('     Продолжить', 280, 300)
+            self.print_text('Вернуться в меню', 280, 350)
+
+            pg.display.flip()
+            self.clock.tick(15)
 
     def quit(self):
         pg.quit()

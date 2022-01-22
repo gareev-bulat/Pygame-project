@@ -318,7 +318,7 @@ class Game:
 
     def prepare_snow(self):
         for i in range(400):
-            snow_x, snow_y = random.randint(0, WIDTH - 5), random.randint(-settings.HEIGHT, 20)
+            snow_x, snow_y = random.randint(0, WIDTH - 5), random.randint(0, settings.HEIGHT)
             self.snow_list.append([snow_x, snow_y, random.choice((0.3, 0.5))])
 
     def load_data(self):

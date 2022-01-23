@@ -6,20 +6,6 @@ import os, sys
 from pygame import time
 
 
-# class Wall(pg.sprite.Sprite):
-#     def __init__(self, game, x, y):
-#         self.groups = game.all_sprites, game.walls
-#         pg.sprite.Sprite.__init__(self, self.groups)
-#         self.game = game
-#         self.image = pg.Surface((TILESIZE, TILESIZE))
-#         self.image.fill(GREEN)
-#         self.rect = self.image.get_rect()
-#         self.x = x
-#         self.y = y
-#         self.rect.x = x * TILESIZE
-#         self.rect.y = y * TILESIZE
-
-
 def load_image(name, colorkey=None):
     fullname = name
     if not os.path.isfile(fullname):
@@ -189,11 +175,6 @@ class Player(pg.sprite.Sprite):
             else:
                 self.jump_counter = 50
                 self.make_jump = False
-            # if len(hits_with_walls) != 0:
-            #     self.collide_with_walls('x')
-            #     self.collide_with_walls('y')
-            #     self.jump_counter = 50
-            #     self.make_jump = False
 
     def collide_with_walls(self, direction):
         hits_with_walls = pg.sprite.spritecollide(self, self.game.walls, False)
@@ -347,7 +328,5 @@ class Sword(pg.sprite.Sprite):
     def do(self):
         self.rect.x = self.player_x
         self.rect.y = self.player_y
-
-       # self.rect.y += 60
 
 

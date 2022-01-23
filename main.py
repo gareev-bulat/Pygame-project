@@ -394,14 +394,6 @@ class Game:
         self.medthings = pg.sprite.Group()
         self.enemies = pg.sprite.Group()
         self.sword = pg.sprite.Group()
-        # for row, tiles in enumerate(self.map.data):
-        #     for col, tile in enumerate(tiles):
-        #         if tile == '1':
-        #             Wall(self, col, row)
-        #         if tile == 'P':
-        #             self.player = Player(self, col, row)
-
-
 
         for object in self.map.tmx.objects:
             if object.name == 'player':
@@ -442,10 +434,16 @@ class Game:
             self.screen.blit(text_money_counter, (810, 6))
         if settings.HEALTH <= 0:
             self.game_over()
+        if settings.MONEY_COUNTER == 20:
+            self.level_completed()
         pg.display.flip()
 
+    def level_completed(self):
+        Restarter(self.screen, self.title).win()
+
+
     def game_over(self):
-        Game_Over(self.screen, self.title).do()
+        Restarter(self.screen, self.title).lose()
         if self.flag:
             self.work_with_base()
             self.flag = False
@@ -493,9 +491,10 @@ class Game:
         sys.exit()
 
 
-class Game_Over:
+class Restarter:
 
     def __init__(self, screen, map):
+        pg.font.init()
         self.screen = screen
         self.map = map
         self.clock = pg.time.Clock()
@@ -506,7 +505,7 @@ class Game_Over:
         text = font_type.render(message, True, font_color)
         self.screen.blit(text, (x, y))
 
-    def do(self):
+    def lose(self):
         run = True
         while run:
             for event in pg.event.get():
@@ -515,7 +514,7 @@ class Game_Over:
                 if event.type == pg.MOUSEBUTTONDOWN:
                     pos = pg.mouse.get_pos()
                     if 280 < pos[0] < 861 and 311 < pos[1] < 341:
-                        self.start_game_again()
+                        self.launcher('LOSE')
                     elif 279 < pos[0] < 773 and 366 < pos[1] < 395:
                         menu = Menu()
                         menu.start_screen()
@@ -526,14 +525,40 @@ class Game_Over:
             pg.display.flip()
             self.clock.tick(15)
 
-    def start_game_again(self):
-        game = Game(self.map)
+    def win(self):
+        run = True
+        while run:
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    pg.quit()
+                if event.type == pg.MOUSEBUTTONDOWN:
+                    pos = pg.mouse.get_pos()
+                    if 280 < pos[0] < 861 and 311 < pos[1] < 341:
+                        self.launcher('WIN')
+                    elif 279 < pos[0] < 773 and 366 < pos[1] < 395:
+                        menu = Menu()
+                        menu.start_screen()
+            self.print_text('     Уровень пройден!', 280, 200)
+            self.print_text('Следующий уровень', 280, 290)
+            self.print_text('Вернуться в меню', 280, 350)
+
+            pg.display.flip()
+            self.clock.tick(15)
+
+
+    def launcher(self, sit):
+        if sit == 'WIN':
+            map = settings.LEVEL_LIST[settings.LEVEL_LIST.index(self.map) + 1]
+        else:
+            map = self.map
+        settings.MONEY_COUNTER = 0
+        settings.HEALTH = 1.0
+        game = Game(map)
         running = True
         game.new()
-        settings.HEALTH = 1.0
+
         while running:
             game.run()
-
 
 
 if __name__ == '__main__':

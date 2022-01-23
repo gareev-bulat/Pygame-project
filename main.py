@@ -440,14 +440,12 @@ class Game:
 
     def level_completed(self):
         Restarter(self.screen, self.title).win()
-
-
-    def game_over(self):
-        Restarter(self.screen, self.title).lose()
         if self.flag:
             self.work_with_base()
             self.flag = False
 
+    def game_over(self):
+        Restarter(self.screen, self.title).lose()
 
     def work_with_base(self):
         cur = self.con.cursor()
@@ -536,6 +534,8 @@ class Restarter:
                     if 280 < pos[0] < 861 and 311 < pos[1] < 341:
                         self.launcher('WIN')
                     elif 279 < pos[0] < 773 and 366 < pos[1] < 395:
+                        settings.MONEY_COUNTER += 20
+                        Game(self.map).work_with_base()
                         menu = Menu()
                         menu.start_screen()
             self.print_text('     Уровень пройден!', 280, 200)
@@ -549,14 +549,15 @@ class Restarter:
     def launcher(self, sit):
         if sit == 'WIN':
             map = settings.LEVEL_LIST[settings.LEVEL_LIST.index(self.map) + 1]
+            settings.MONEY_COUNTER += 20
+            Game(map).work_with_base()
         else:
             map = self.map
-        settings.MONEY_COUNTER = 0
+            settings.MONEY_COUNTER = 0
         settings.HEALTH = 1.0
         game = Game(map)
         running = True
         game.new()
-
         while running:
             game.run()
 

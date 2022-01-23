@@ -549,7 +549,7 @@ class Restarter:
     def launcher(self, sit):
         if sit == 'WIN':
             map = settings.LEVEL_LIST[settings.LEVEL_LIST.index(self.map) + 1]
-            settings.MONEY_COUNTER += 20
+            settings.MONEY_COUNTER = 0
             Game(map).work_with_base()
         else:
             map = self.map

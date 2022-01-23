@@ -439,13 +439,13 @@ class Game:
         pg.display.flip()
 
     def level_completed(self):
-        Restarter(self.screen, self.title).win()
+        self.win()
         if self.flag:
             self.work_with_base()
             self.flag = False
 
     def game_over(self):
-        Restarter(self.screen, self.title).lose()
+        self.lose()
 
     def work_with_base(self):
         cur = self.con.cursor()
@@ -488,21 +488,6 @@ class Game:
         pg.quit()
         sys.exit()
 
-
-class Restarter:
-
-    def __init__(self, screen, map):
-        pg.font.init()
-        self.screen = screen
-        self.map = map
-        self.clock = pg.time.Clock()
-        self.all_sprites = pg.sprite.Group()
-
-    def print_text(self, message, x, y, font_color=(0, 0, 0), font_type='shrift.otf', font_size=50):
-        font_type = pg.font.Font(font_type, font_size)
-        text = font_type.render(message, True, font_color)
-        self.screen.blit(text, (x, y))
-
     def lose(self):
         run = True
         while run:
@@ -514,6 +499,8 @@ class Restarter:
                     if 280 < pos[0] < 861 and 311 < pos[1] < 341:
                         self.launcher('LOSE')
                     elif 279 < pos[0] < 773 and 366 < pos[1] < 395:
+                        settings.HEALTH = 1.0
+                        settings.MONEY_COUNTER = 0
                         menu = Menu()
                         menu.start_screen()
             self.print_text('     Вы проиграли', 280, 200)
@@ -548,14 +535,13 @@ class Restarter:
 
     def launcher(self, sit):
         if sit == 'WIN':
-            map = settings.LEVEL_LIST[settings.LEVEL_LIST.index(self.map) + 1]
-            settings.MONEY_COUNTER += 20
-            Game(map).work_with_base()
+            self.title = settings.LEVEL_LIST[settings.LEVEL_LIST.index(self.title) + 1]
+            Game(self.title).work_with_base()
+            settings.MONEY_COUNTER = 0
         else:
-            map = self.map
             settings.MONEY_COUNTER = 0
         settings.HEALTH = 1.0
-        game = Game(map)
+        game = Game(self.title)
         running = True
         game.new()
         while running:

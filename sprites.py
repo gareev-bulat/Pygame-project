@@ -350,18 +350,4 @@ class Sword(pg.sprite.Sprite):
 
        # self.rect.y += 60
 
-class Game_Over:
-
-    def __init__(self, screen):
-        self.screen = screen
-        self.all_sprites = pg.sprite.Group()
-        self.sprite = pg.sprite.Sprite()
-        self.sprite.image = load_image("gameover.png")
-        self.sprite.rect = self.sprite.image.get_rect()
-        self.all_sprites.add(self.sprite)
-        self.sprite.rect.x = settings.WIDTH / 2 - 300
-        self.sprite.rect.y = settings.HEIGHT / 2 - 300
-
-    def do(self):
-        self.all_sprites.draw(self.screen)
 

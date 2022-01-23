@@ -23,13 +23,16 @@ class Shop:
         self.vol = 0.15
         self.clock = pg.time.Clock()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
-        self.buttons = [load_image('level_1.png'),
-                        load_image('level_2.png')]
-        self.buttons_coords= {'level1': (10, 10),
-                              'level2': (64, 10)}
         self.click_up_sound = pg.mixer.Sound("Menu/click_up.mp3")
         self.click_down_sound = pg.mixer.Sound("Menu/click_down.mp3")
-        self.map_name = ''
+        self.frames = []
+        cut_sheet(load_image("testPerson.png"), 4, 4, self.frames)
+        cut_sheet(load_image('testPersonOrange.png'), 4, 4, self.frames)
+        self.image = self.frames[0]
+        self.image2 = self.frames[16]
+        self.choice_rect_x, self.choice_rect_y = 270, 550
+        self.rect_surf = pg.Surface((125, 8))
+        self.rect_surf.fill('yellow')
 
 
     def terminate(self):
@@ -38,11 +41,13 @@ class Shop:
 
     def check_pos(self, pos):
         x, y = pos[0], pos[1]
-        if 20 <= x <= 49 and 20 <= y <= 72:
-            return 'level_1'
-        if 76 <= x <= 112 and 20 <= y <= 72:
-            return 'level_2'
-        return False
+        print(x, y)
+        if 269 <= x <= 390 and 394 <= y <= 538:
+            settings.active_skin = 'black'
+            return 'black'
+        elif 424 <= x <= 539 and 399 <= y <= 537:
+            settings.active_skin = 'orange'
+            return 'orange'
 
     def click_button_music(self, state):
         if state == 'up':
@@ -53,13 +58,12 @@ class Shop:
             self.click_down_sound.play()
 
     def choice_menu(self):
-
         fon = pg.transform.scale(load_image('fon.jpg'), (WIDTH, HEIGHT))
         self.screen.blit(fon, (0, 0))
-        level_1 = self.buttons[0]
-        level_2 = self.buttons[1]
-        self.screen.blit(level_1, self.buttons_coords['level1'])
-        self.screen.blit(level_2, self.buttons_coords['level2'])
+        skin_1 = pg.transform.scale(self.image, (170, 170))
+        skin_2 = pg.transform.scale(self.image2, (170, 170))
+        self.screen.blit(skin_1, (250, HEIGHT // 2))
+        self.screen.blit(skin_2, (400, HEIGHT // 2))
 
         while True:
             for event in pg.event.get():
@@ -76,23 +80,22 @@ class Shop:
                     self.terminate()
                 elif (event.type == pg.KEYUP or event.type == pg.MOUSEBUTTONUP):
                     self.click_button_music('up')
-                    if self.check_pos(pg.mouse.get_pos()) == 'level_1':
-                        self.map_name = 'map.tmx'
-                    elif self.check_pos(pg.mouse.get_pos()) == 'level_2':
-                        self.map_name = 'map2.tmx'
-                    if self.map_name != '':
-                        self.start_game()
                 elif (event.type == pg.KEYDOWN or event.type == pg.MOUSEBUTTONDOWN):
                     self.click_button_music('down')
+                    if self.check_pos(pg.mouse.get_pos()) == 'orange':
+                        self.choice_rect_x = 420
+                    elif self.check_pos(pg.mouse.get_pos()) == 'black':
+                        self.choice_rect_x = 270
+            #self.screen.blit(skin_1, (250, HEIGHT // 2))
+            #self.screen.blit(skin_2, (400, HEIGHT // 2))
+            if settings.active_skin == 'orange':
+                self.screen.blit(self.rect_surf, (self.choice_rect_x, self.choice_rect_y))
+            elif settings.active_skin == 'black':
+                self.screen.blit(self.rect_surf, (self.choice_rect_x, self.choice_rect_y))
+
             pg.display.flip()
             self.clock.tick(FPS)
 
-    def start_game(self):
-        game = Game(self.map_name)
-        running = True
-        game.new()
-        while running:
-            game.run()
 
 class Options:
 
@@ -311,6 +314,7 @@ class Game:
         self.text_font = pg.font.SysFont(settings.FONT, 35)
         self.clock = pg.time.Clock()
         self.flag = True
+        self.color_of_health = GREEN
         self.con = sqlite3.connect("database.db")
         self.snow_list = []
         self.load_data()
@@ -441,7 +445,7 @@ class Game:
         pg.display.flip()
 
     def game_over(self):
-        Game_Over(self.screen).do()
+        Game_Over(self.screen, self.title).do()
         if self.flag:
             self.work_with_base()
             self.flag = False
@@ -487,6 +491,49 @@ class Game:
     def quit(self):
         pg.quit()
         sys.exit()
+
+
+class Game_Over:
+
+    def __init__(self, screen, map):
+        self.screen = screen
+        self.map = map
+        self.clock = pg.time.Clock()
+        self.all_sprites = pg.sprite.Group()
+
+    def print_text(self, message, x, y, font_color=(0, 0, 0), font_type='shrift.otf', font_size=50):
+        font_type = pg.font.Font(font_type, font_size)
+        text = font_type.render(message, True, font_color)
+        self.screen.blit(text, (x, y))
+
+    def do(self):
+        run = True
+        while run:
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    pg.quit()
+                if event.type == pg.MOUSEBUTTONDOWN:
+                    pos = pg.mouse.get_pos()
+                    if 280 < pos[0] < 861 and 311 < pos[1] < 341:
+                        self.start_game_again()
+                    elif 279 < pos[0] < 773 and 366 < pos[1] < 395:
+                        menu = Menu()
+                        menu.start_screen()
+            self.print_text('     Вы проиграли', 280, 200)
+            self.print_text('Попробовать ещё раз', 280, 290)
+            self.print_text('Вернуться в меню', 280, 350)
+
+            pg.display.flip()
+            self.clock.tick(15)
+
+    def start_game_again(self):
+        game = Game(self.map)
+        running = True
+        game.new()
+        settings.HEALTH = 1.0
+        while running:
+            game.run()
+
 
 
 if __name__ == '__main__':

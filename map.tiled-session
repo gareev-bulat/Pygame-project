@@ -20,11 +20,11 @@
             }
         },
         "map2.tmx": {
-            "scale": 1.5,
+            "scale": 1,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 332.33333333333337,
-                "y": 1501.6666666666665
+                "x": 2847.5,
+                "y": 1023.5
             }
         },
         "spritesheet_24.tsx": {

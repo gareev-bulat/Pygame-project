@@ -29,10 +29,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05ee5613-275b-4909-a95c-f5aec8c90f5b" name="Default Changelist" comment="fix bag">
+    <list default="true" id="05ee5613-275b-4909-a95c-f5aec8c90f5b" name="Default Changelist" comment="fix map">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/database.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map2.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/map2.tmx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -482,25 +483,25 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1642510173633" />
-    <state width="1515" height="88" key="GridCell.Tab.0.bottom" timestamp="1642934019131">
+    <state width="1515" height="283" key="GridCell.Tab.0.bottom" timestamp="1642963982214">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="88" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1642934019131" />
+    <state width="1515" height="283" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1642963982214" />
     <state width="1515" height="129" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1642359889974" />
-    <state width="1515" height="88" key="GridCell.Tab.0.center" timestamp="1642934019131">
+    <state width="1515" height="283" key="GridCell.Tab.0.center" timestamp="1642963982214">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="88" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1642934019131" />
+    <state width="1515" height="283" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1642963982214" />
     <state width="1515" height="129" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1642359889974" />
-    <state width="1515" height="88" key="GridCell.Tab.0.left" timestamp="1642934019131">
+    <state width="1515" height="283" key="GridCell.Tab.0.left" timestamp="1642963982214">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="88" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1642934019131" />
+    <state width="1515" height="283" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1642963982214" />
     <state width="1515" height="129" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1642359889973" />
-    <state width="1515" height="88" key="GridCell.Tab.0.right" timestamp="1642934019131">
+    <state width="1515" height="283" key="GridCell.Tab.0.right" timestamp="1642963982214">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="88" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1642934019131" />
+    <state width="1515" height="283" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1642963982214" />
     <state width="1515" height="129" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1642359889974" />
     <state width="757" height="160" key="GridCell.Tab.1.bottom" timestamp="1642344068547">
       <screen x="0" y="0" width="1536" height="864" />
@@ -522,10 +523,10 @@
     </state>
     <state width="757" height="151" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1641641032983" />
     <state width="757" height="160" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1642344068547" />
-    <state x="156" y="86" key="MergeDialog" timestamp="1642189857786">
+    <state x="156" y="86" key="MergeDialog" timestamp="1642964058796">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="156" y="86" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1642189857786" />
+    <state x="156" y="86" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1642964058796" />
     <state x="402" y="230" key="MultipleFileMergeDialog" timestamp="1641634433081">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -569,5 +570,9 @@
     </state>
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1642105959672" />
     <state x="431" y="152" width="672" height="711" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1642264493318" />
+    <state x="193" y="164" key="vcs.ApplyPatchDifferentiatedDialog" timestamp="1642964049589">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="193" y="164" key="vcs.ApplyPatchDifferentiatedDialog/0.0.1536.824@0.0.1536.824" timestamp="1642964049589" />
   </component>
 </project>

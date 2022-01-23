@@ -522,7 +522,7 @@ class Game:
                         self.launcher('WIN')
                     elif 279 < pos[0] < 773 and 366 < pos[1] < 395:
                         settings.MONEY_COUNTER += 20
-                        Game(self.map).work_with_base()
+                        Game(self.title).work_with_base()
                         menu = Menu()
                         menu.start_screen()
             self.print_text('     Уровень пройден!', 280, 200)

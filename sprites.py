@@ -79,6 +79,7 @@ class Player(pg.sprite.Sprite):
         self.make_jump = False
         self.vniz = False
         self.onLadder = False
+        self.extraLadder = False
         self.temp = []
         self.jump_counter = 50
         self.levitating = 0
@@ -115,12 +116,12 @@ class Player(pg.sprite.Sprite):
                     self.sounds('damage_to_player')
                     if self.rotation == 'left':
                         for i in range(560):
-                            self.x += 0.25 / 2
-                            self.y -= 0.25 / 2
+                            self.x += 0.15 / 2
+                            self.y -= 0.15 / 2
                     else:
                         for i in range(560):
-                            self.x -= 0.25 / 2
-                            self.y -= 0.25 / 2
+                            self.x -= 0.15 / 2
+                            self.y -= 0.15 / 2
         elif len(hits_with_shipp) == 0:
             self.count_damage_shipps = 0
         if hits_with_medthings:
@@ -150,9 +151,18 @@ class Player(pg.sprite.Sprite):
                     self.image = self.frames[:4][int(self.second_count) % 4]
             self.rotation = 'right'
         if self.onLadder:
-            if keys[pg.K_UP] or keys[pg.K_w]:
+            if 1 <= self.rect.bottom - hits_with_ladders[0].rect.top <= 10:
+                self.levitating = 0
+                self.extraLadder = True
+            else:
+                self.levitating = 5
+                self.extraLadder = False
+            if keys[pg.K_UP] or keys[pg.K_w] and not self.extraLadder:
                 self.y = self.y - 10
+                self.first_count += 0.25
             self.image = self.frames[8:12][int(self.first_count) % 4]
+        else:
+            self.extraLadder = False
         if keys[pg.K_DOWN] or keys[pg.K_s]:
             self.vy = settings.PLAYER_SPEED
         if mods & pg.KMOD_SHIFT and (keys[pg.K_LEFT] or keys[pg.K_a]):
@@ -207,7 +217,7 @@ class Player(pg.sprite.Sprite):
                 self.vy = 0
                 self.levitating = 0
                 self.rect.y = self.y
-            else:
+            elif not self.extraLadder:
                 self.levitating = 5
 
     def sounds(self, what):

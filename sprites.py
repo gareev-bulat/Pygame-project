@@ -67,12 +67,18 @@ class Player(pg.sprite.Sprite):
         self.money_music.set_volume(1.0)
         self.game = game
         self.clock = pg.time.Clock()
-        self.frames = []
         self.first_count = 0
         self.second_count = 0
-        cut_sheet(load_image("testPersonRight.png"), 4, 1, self.frames)
-        cut_sheet(load_image("testPersonLeft.png"), 4, 1, self.frames)
-        cut_sheet(load_image("testPersonClimb.png"), 4, 1, self.frames)
+        if settings.active_skin == 'black':
+            self.frames = []
+            cut_sheet(load_image("testPersonRight.png"), 4, 1, self.frames)
+            cut_sheet(load_image("testPersonLeft.png"), 4, 1, self.frames)
+            cut_sheet(load_image("testPersonClimb.png"), 4, 1, self.frames)
+        elif settings.active_skin == 'orange':
+            self.frames = []
+            cut_sheet(load_image("testPersonRightOrange.png"), 4, 1, self.frames)
+            cut_sheet(load_image("testPersonLeftOrange.png"), 4, 1, self.frames)
+            cut_sheet(load_image("testPersonClimbOrange.png"), 4, 1, self.frames)
         self.image = self.frames[4]
         self.rect = self.image.get_rect()
         self.vx, self.vy = 0, 0

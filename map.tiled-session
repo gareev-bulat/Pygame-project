@@ -8,6 +8,38 @@
     ],
     "file.lastUsedOpenFilter": "Все файлы (*)",
     "fileStates": {
+        "C:/Users/HP/Desktop/проект Яндекс Лицей4/для защиты/enem1.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "C:/Users/HP/Desktop/проект Яндекс Лицей4/для защиты/map.tmx": {
+            "scale": 0.125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 2872,
+                "y": 1060
+            }
+        },
+        "C:/Users/HP/Desktop/проект Яндекс Лицей4/для защиты/map2.tmx": {
+            "scale": 0.17565104166666667,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 2880.7116382505556,
+                "y": 1027.6056338028168
+            }
+        },
+        "C:/Users/HP/Desktop/проект Яндекс Лицей4/для защиты/spritesheet_24.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/HP/Desktop/проект Яндекс Лицей4/для защиты/spritesheet_24_snow.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/HP/Desktop/проект Яндекс Лицей4/для защиты/tile_3.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/HP/Desktop/проект Яндекс Лицей4/для защиты/tiles_1.tsx": {
+            "scaleInDock": 1
+        },
         "aa.tsx": {
             "scaleInDock": 1
         },
@@ -15,19 +47,20 @@
             "scale": 0.33,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 1489.3939393939395,
-                "y": 834.8484848484848
+                "x": 2877.2727272727275,
+                "y": 1025.7575757575758
             }
         },
         "map2.tmx": {
-            "scale": 1,
+            "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 2847.5,
-                "y": 1023.5
+                "x": 2879.6666666666665,
+                "y": 1023.6666666666666
             }
         },
         "spritesheet_24.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -49,9 +82,11 @@
     ],
     "project": "map.tiled-project",
     "recentFiles": [
-        "spritesheet_24.tsx",
         "map2.tmx",
         "map.tmx",
+        "C:/Users/HP/Desktop/проект Яндекс Лицей4/для защиты/map2.tmx",
+        "C:/Users/HP/Desktop/проект Яндекс Лицей4/для защиты/map.tmx",
+        "spritesheet_24.tsx",
         "tile_3.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",

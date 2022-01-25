@@ -31,8 +31,10 @@ class Shop:
         self.image = self.frames[0]
         self.image2 = self.frames[16]
         self.choice_rect_x, self.choice_rect_y = 270, 550
+        self.rect_surf_active = pg.Surface((125, 8))
+        self.rect_surf_active.fill('yellow')
         self.rect_surf = pg.Surface((125, 8))
-        self.rect_surf.fill('yellow')
+        self.rect_surf.fill('black')
 
 
     def terminate(self):
@@ -78,19 +80,34 @@ class Shop:
                             pg.mixer.music.set_volume(self.vol)
                 if event.type == pg.QUIT:
                     self.terminate()
-                elif (event.type == pg.KEYUP or event.type == pg.MOUSEBUTTONUP):
+                elif event.type == pg.MOUSEBUTTONUP:
                     self.click_button_music('up')
-                elif (event.type == pg.KEYDOWN or event.type == pg.MOUSEBUTTONDOWN):
+                elif event.type == pg.MOUSEBUTTONDOWN:
                     self.click_button_music('down')
                     if self.check_pos(pg.mouse.get_pos()) == 'orange':
-                        self.choice_rect_x = 420
-                    elif self.check_pos(pg.mouse.get_pos()) == 'black':
+                        self.choice_rect_x_active = 420
                         self.choice_rect_x = 270
+                    elif self.check_pos(pg.mouse.get_pos()) == 'black':
+                        self.choice_rect_x_active = 270
+                        self.choice_rect_x = 420
+                elif event.type == pg.KEYDOWN:
+                    if event.key == pg.K_ESCAPE:
+                        menu = Menu()
+                        menu.start_screen()
+                        break
+                if settings.active_skin == 'black':
+                    self.choice_rect_x_active = 270
+                    self.choice_rect_x = 420
+                else:
+                    self.choice_rect_x_active = 420
+                    self.choice_rect_x = 270
             #self.screen.blit(skin_1, (250, HEIGHT // 2))
             #self.screen.blit(skin_2, (400, HEIGHT // 2))
             if settings.active_skin == 'orange':
+                self.screen.blit(self.rect_surf_active, (self.choice_rect_x_active, self.choice_rect_y))
                 self.screen.blit(self.rect_surf, (self.choice_rect_x, self.choice_rect_y))
             elif settings.active_skin == 'black':
+                self.screen.blit(self.rect_surf_active, (self.choice_rect_x_active, self.choice_rect_y))
                 self.screen.blit(self.rect_surf, (self.choice_rect_x, self.choice_rect_y))
 
             pg.display.flip()
@@ -162,13 +179,17 @@ class Levels:
                         if self.vol != 0:
                             self.vol = self.vol - 0.1
                             pg.mixer.music.set_volume(self.vol)
-                    if event.key == pg.K_EQUALS:
+                    elif event.key == pg.K_ESCAPE:
+                        menu = Menu()
+                        menu.start_screen()
+                        break
+                    elif event.key == pg.K_EQUALS:
                         if self.vol <= 2:
                             self.vol = self.vol + 0.1
                             pg.mixer.music.set_volume(self.vol)
                 if event.type == pg.QUIT:
                     self.terminate()
-                elif (event.type == pg.KEYUP or event.type == pg.MOUSEBUTTONUP):
+                elif event.type == pg.MOUSEBUTTONUP:
                     self.click_button_music('up')
                     if self.check_pos(pg.mouse.get_pos()) == 'level_1':
                         self.map_name = 'map.tmx'
@@ -269,7 +290,7 @@ class Menu:
                             pg.mixer.music.set_volume(self.vol)
                 if event.type == pg.QUIT:
                     self.terminate()
-                elif (event.type == pg.KEYUP or event.type == pg.MOUSEBUTTONUP):
+                elif event.type == pg.MOUSEBUTTONUP:
                     self.click_button_music('up')
                     if self.check_pos(pg.mouse.get_pos()) == 'Play':
                         levels = Levels()
@@ -368,8 +389,8 @@ class Game:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
         for sprite in self.medthings:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
-        for sprite in self.enemies:
-            self.screen.blit(sprite.image, self.camera.apply(sprite))
+        # for sprite in self.enemies:
+        #     self.screen.blit(sprite.image, self.camera.apply(sprite))
         #for sprite in self.sword:
         #    self.screen.blit(sprite.image, self.camera.apply(sprite))
         self.snow_animation()
@@ -522,7 +543,7 @@ class Game:
                         self.launcher('WIN')
                     elif 279 < pos[0] < 773 and 366 < pos[1] < 395:
                         settings.MONEY_COUNTER += 20
-                        Game(self.map).work_with_base()
+                        Game(self.title).work_with_base()
                         menu = Menu()
                         menu.start_screen()
             self.print_text('     Уровень пройден!', 280, 200)

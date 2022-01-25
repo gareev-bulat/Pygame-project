@@ -175,7 +175,7 @@ class Player(pg.sprite.Sprite):
             self.vx = -settings.PLAYER_SPEED - 150
         if mods & pg.KMOD_SHIFT and (keys[pg.K_RIGHT] or keys[pg.K_d]):
             self.vx = settings.PLAYER_SPEED + 150
-        if (keys[pg.K_SPACE] or keys[pg.K_UP]) and self.make_jump is False:
+        if (keys[pg.K_SPACE] or keys[pg.K_UP]) and self.make_jump is False and self.onLadder is False:
             self.make_jump = True
             choice(self.game.jump_sound).play()
         if self.vx != 0 and self.vy != 0:
@@ -183,7 +183,7 @@ class Player(pg.sprite.Sprite):
             self.vy = self.vy // 1.5
 
     def jump(self):
-        if not self.onLadder:
+        if self.onLadder is False:
             hits_with_walls = pg.sprite.spritecollide(self, self.game.walls, False)
             if self.jump_counter >= -50:
                 self.y = self.y - self.jump_counter / 2.5

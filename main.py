@@ -134,10 +134,10 @@ class Levels:
         self.vol = 0.15
         self.clock = pg.time.Clock()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
-        self.buttons = [load_image('level_1.png'),
-                        load_image('level_2.png')]
-        self.buttons_coords= {'level1': (10, 10),
-                              'level2': (64, 10)}
+        self.buttons = [load_image('1.png'),
+                        load_image('2.png')]
+        self.buttons_coords= {'level1': (320, 300),
+                              'level2': (450, 300)}
         self.click_up_sound = pg.mixer.Sound("Menu/click_up.mp3")
         self.click_down_sound = pg.mixer.Sound("Menu/click_down.mp3")
         self.map_name = ''
@@ -149,9 +149,10 @@ class Levels:
 
     def check_pos(self, pos):
         x, y = pos[0], pos[1]
-        if 20 <= x <= 49 and 20 <= y <= 72:
+        print(x, y)
+        if 334 <= x <= 388 and 307 <= y <= 414:
             return 'level_1'
-        if 76 <= x <= 112 and 20 <= y <= 72:
+        if 458 <= x <= 544 and 310 <= y <= 418:
             return 'level_2'
         return False
 

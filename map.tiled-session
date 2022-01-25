@@ -47,16 +47,16 @@
             "scale": 0.33,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 2877.2727272727275,
+                "x": 3354.545454545455,
                 "y": 1025.7575757575758
             }
         },
         "map2.tmx": {
-            "scale": 1.5,
+            "scale": 1,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 2879.6666666666665,
-                "y": 1023.6666666666666
+                "x": 4881,
+                "y": 1358.5
             }
         },
         "spritesheet_24.tsx": {
@@ -66,17 +66,26 @@
         },
         "tile_3.tsx": {
             "scaleInEditor": 1
+        },
+        "безымянный.tmx": {
+            "scale": 0.0625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 5376,
+                "y": 1800
+            }
         }
     },
     "last.exportedFilePath": "C:/Users/HP/Desktop/Pygame_project",
     "last.imagePath": "C:/Users/HP/Desktop/Pygame_project",
-    "map.height": 64,
+    "map.height": 32,
     "map.lastUsedExportFilter": "CSV файлы (*.csv)",
     "map.lastUsedFormat": "tmx",
     "map.layerDataFormat": null,
     "map.orientation": null,
+    "map.tileHeight": 64,
     "map.tileWidth": 64,
-    "map.width": 64,
+    "map.width": 90,
     "openFiles": [
         "map.tmx"
     ],

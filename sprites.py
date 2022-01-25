@@ -106,6 +106,7 @@ class Player(pg.sprite.Sprite):
         hits_with_money = pg.sprite.spritecollide(self, self.game.money, False)
         hits_with_shipp = pg.sprite.spritecollide(self, self.game.shipp, False)
         hits_with_medthings = pg.sprite.spritecollide(self, self.game.medthings, False)
+        hits_with_liquid = pg.sprite.spritecollide(self, self.game.liquid, False)
         if len(hits_with_money) != 0:
             hits_with_money[0].kill()
             settings.MONEY_COUNTER += len(hits_with_money)
@@ -114,6 +115,8 @@ class Player(pg.sprite.Sprite):
             self.onLadder = True
         else:
             self.onLadder = False
+        if len(hits_with_liquid) != 0:
+            settings.HEALTH = 0
         if len(hits_with_shipp) != 0:
             self.count_damage_shipps = round(self.count_damage_shipps + 0.0625, 4)
             for hit in hits_with_shipp:
@@ -244,6 +247,18 @@ class Player(pg.sprite.Sprite):
         self.rect.y = self.y
         self.collide_with_walls('y')
 
+
+class Liquid(pg.sprite.Sprite):
+    def __init__(self, game, x, y, x1, y1):
+        self.groups = game.liquid
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.game = game
+        self.rect = pg.Rect(x, y, x1, y1)
+        # self.hit_rect = self.rect
+        self.x = x
+        self.y = y
+        self.rect.x = x
+        self.rect.y = y
 
 class Wall(pg.sprite.Sprite):
     def __init__(self, game, x, y, x1, y1):

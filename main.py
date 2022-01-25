@@ -114,19 +114,19 @@ class Shop:
             self.clock.tick(FPS)
 
 
-class Options:
-
-    def __init__(self, screen):
-        self.screen = screen
-        self.screen2 = pg.Surface((OPTIONS_WIDTH, OPTIONS_HEIGHT))
-
-    def surface(self):
-        fon = pg.transform.scale(load_image('Menu/options_fon.jpg'), (OPTIONS_WIDTH, OPTIONS_HEIGHT))
-        self.screen2.blit(fon, (0, 0))
-        self.event()
-
-    def event(self):
-        self.screen.blit(self.screen2, (WIDTH / 2 - OPTIONS_WIDTH / 2, HEIGHT / 2 - OPTIONS_HEIGHT / 2))
+# class Options:
+#
+#     def __init__(self, screen):
+#         self.screen = screen
+#         self.screen2 = pg.Surface((OPTIONS_WIDTH, OPTIONS_HEIGHT))
+#
+#     def surface(self):
+#         fon = pg.transform.scale(load_image('Menu/options_fon.jpg'), (OPTIONS_WIDTH, OPTIONS_HEIGHT))
+#         self.screen2.blit(fon, (0, 0))
+#         self.event()
+#
+#     def event(self):
+#         self.screen.blit(self.screen2, (WIDTH / 2 - OPTIONS_WIDTH / 2, HEIGHT / 2 - OPTIONS_HEIGHT / 2))
 
 class Levels:
     def __init__(self):
@@ -223,8 +223,8 @@ class Menu:
         self.clock = pg.time.Clock()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         self.buttons = [load_image('Menu/play.png'),
-                        load_image('Menu/options.png'),
                         load_image('Menu/exit.png'),
+                        load_image('Menu/options.png'),
                         load_image('Menu/shop.png')]
         self.buttons_sizes = {'play': (221, 100), 
                               'options': (326, 79), 
@@ -247,9 +247,9 @@ class Menu:
         elif 414 <= x <= 598 and 391 <= y <= 440:
             return 'Shop'
         elif 358 <= x <= 662 and 485 <= y <= 538:
-            return 'Options'
-        elif 414 <= x <= 600 and 574 <= y <= 629:
             return 'Exit'
+        #elif 414 <= x <= 600 and 574 <= y <= 629:
+        #    return 'Options'
         return False
 
     def click_button_music(self, state):
@@ -266,11 +266,11 @@ class Menu:
         self.screen.blit(fon, (0, 0))
         button_1 = self.buttons[0]
         button_2 = self.buttons[1]
-        button_3 = self.buttons[2]
+        #button_3 = self.buttons[2]
         button_4 = self.buttons[3]
         self.screen.blit(button_1, (WIDTH / 2 - (self.buttons_sizes['play'][0] // 2), HEIGHT / 2 - 100))
-        self.screen.blit(button_2, (WIDTH / 2 - (self.buttons_sizes['options'][0] // 2), HEIGHT / 2 + 90))
-        self.screen.blit(button_3, (WIDTH / 2 - (self.buttons_sizes['exit'][0] // 2), HEIGHT / 2 + 100 + 79))
+        self.screen.blit(button_2, (WIDTH / 2 - (self.buttons_sizes['exit'][0] // 2), HEIGHT / 2 + 90))
+        #self.screen.blit(button_3, (WIDTH / 2 - (self.buttons_sizes['options'][0] // 2), HEIGHT / 2 + 100 + 79))
         self.screen.blit(button_4, (WIDTH / 2 - (self.buttons_sizes['shop'][0] // 2 + 5), HEIGHT / 2 - 5))
         self.screen.blit(load_image('money.png'), (10, 10))
         text = self.work_with_base()
@@ -416,6 +416,7 @@ class Game:
         self.medthings = pg.sprite.Group()
         self.enemies = pg.sprite.Group()
         self.sword = pg.sprite.Group()
+        self.liquid = pg.sprite.Group()
 
         for object in self.map.tmx.objects:
             if object.name == 'player':
@@ -436,6 +437,8 @@ class Game:
                 Bandage(self, object.x, object.y, object.width, object.height)
             elif object.name == 'sword':
                 Sword(self, object.x, object.y, object.width, object.height)
+            elif object.name == 'liquid':
+                Liquid(self, object.x, object.y, object.width, object.height)
 
 
         self.camera = Camera(self.map.width, self.map.height)
@@ -557,7 +560,7 @@ class Game:
 
     def launcher(self, sit):
         if sit == 'WIN':
-            self.title = settings.LEVEL_LIST[settings.LEVEL_LIST.index(self.title) + 1]
+            self.title = settings.LEVEL_LIST[(settings.LEVEL_LIST.index(self.title) + 1) % 2]
             Game(self.title).work_with_base()
             settings.MONEY_COUNTER = 0
         else:

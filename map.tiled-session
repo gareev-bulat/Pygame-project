@@ -44,19 +44,19 @@
             "scaleInDock": 1
         },
         "map.tmx": {
-            "scale": 0.33,
+            "scale": 0.75,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 3354.545454545455,
-                "y": 1025.7575757575758
+                "x": 3932,
+                "y": 1211.3333333333335
             }
         },
         "map2.tmx": {
             "scale": 1,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 4881,
-                "y": 1358.5
+                "x": 4878,
+                "y": 1357.5
             }
         },
         "spritesheet_24.tsx": {
@@ -71,7 +71,7 @@
             "scale": 0.0625,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 5376,
+                "x": 5232,
                 "y": 1800
             }
         }
@@ -91,6 +91,7 @@
     ],
     "project": "map.tiled-project",
     "recentFiles": [
+        "безымянный.tmx",
         "map2.tmx",
         "map.tmx",
         "C:/Users/HP/Desktop/проект Яндекс Лицей4/для защиты/map2.tmx",

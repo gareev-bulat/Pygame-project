@@ -327,7 +327,6 @@ class Bandage(pg.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
-
 class Shipp(pg.sprite.Sprite):
     def __init__(self, game, x, y, x1, y1):
         self.groups = game.shipp

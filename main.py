@@ -36,14 +36,12 @@ class Shop:
         self.rect_surf = pg.Surface((125, 8))
         self.rect_surf.fill('black')
 
-
     def terminate(self):
         pg.quit()
         sys.exit()
 
     def check_pos(self, pos):
         x, y = pos[0], pos[1]
-        print(x, y)
         if 269 <= x <= 390 and 394 <= y <= 538:
             settings.active_skin = 'black'
             return 'black'
@@ -225,29 +223,43 @@ class Menu:
         self.buttons = [load_image('Menu/play.png'),
                         load_image('Menu/exit.png'),
                         load_image('Menu/options.png'),
-                        load_image('Menu/shop.png')]
+                        load_image('Menu/shop.png'),
+                        pg.transform.scale(load_image('Menu/mute.png'), (80, 74))]
         self.buttons_sizes = {'play': (221, 100), 
                               'options': (326, 79), 
                               'exit': (204, 79),
-                              'shop': (211, 100)}
+                              'shop': (211, 100),
+                              'mute': (80, 74)}
         self.click_up_sound = pg.mixer.Sound("Menu/click_up.mp3")
         self.click_down_sound = pg.mixer.Sound("Menu/click_down.mp3")
         self.con = sqlite3.connect("database.db")
         self.text_font = pg.font.SysFont(settings.FONT, 35)
+        self.music_flag = True
 
 
     def terminate(self):
         pg.quit()
         sys.exit()
 
+    def music_mute(self):
+        if self.music_flag:
+            pg.mixer.music.pause()
+            self.music_flag = False
+        else:
+            pg.mixer.music.unpause()
+            self.music_flag = True
+
     def check_pos(self, pos):
         x, y = pos[0], pos[1]
+        print(x, y)
         if 409 <= x <= 609 and 298 <= y <= 344:
             return 'Play'
         elif 414 <= x <= 598 and 391 <= y <= 440:
             return 'Shop'
         elif 358 <= x <= 662 and 485 <= y <= 538:
             return 'Exit'
+        elif 942 <= x <= 1017 and 8 <= y <= 76:
+            return 'Music'
         #elif 414 <= x <= 600 and 574 <= y <= 629:
         #    return 'Options'
         return False
@@ -268,10 +280,12 @@ class Menu:
         button_2 = self.buttons[1]
         #button_3 = self.buttons[2]
         button_4 = self.buttons[3]
+        button_5 = self.buttons[4]
         self.screen.blit(button_1, (WIDTH / 2 - (self.buttons_sizes['play'][0] // 2), HEIGHT / 2 - 100))
         self.screen.blit(button_2, (WIDTH / 2 - (self.buttons_sizes['exit'][0] // 2), HEIGHT / 2 + 90))
         #self.screen.blit(button_3, (WIDTH / 2 - (self.buttons_sizes['options'][0] // 2), HEIGHT / 2 + 100 + 79))
         self.screen.blit(button_4, (WIDTH / 2 - (self.buttons_sizes['shop'][0] // 2 + 5), HEIGHT / 2 - 5))
+        self.screen.blit(button_5, (WIDTH - self.buttons_sizes['mute'][0] - 5, 5))
         self.screen.blit(load_image('money.png'), (10, 10))
         text = self.work_with_base()
         menu_money_counter = self.text_font.render(text, True, settings.DARK_BLUE)
@@ -299,12 +313,11 @@ class Menu:
                     elif self.check_pos(pg.mouse.get_pos()) == 'Shop':
                         shop = Shop()
                         shop.choice_menu()
-                    elif self.check_pos(pg.mouse.get_pos()) == 'Options':
-                        options = Options(self.screen)
-                        options.surface()
                     elif self.check_pos(pg.mouse.get_pos()) == 'Exit':
                         pg.quit()
                         sys.exit()
+                    elif self.check_pos(pg.mouse.get_pos()) == 'Music':
+                        self.music_mute()
                 elif (event.type == pg.KEYDOWN or event.type == pg.MOUSEBUTTONDOWN):
                     self.click_button_music('down')
                     # начинаем игру

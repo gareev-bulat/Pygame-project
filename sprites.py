@@ -317,8 +317,8 @@ class Bandage(pg.sprite.Sprite):
     def __init__(self, game, x, y, x1, y1):
         self.groups = game.medthings
         pg.sprite.Sprite.__init__(self, self.groups)
-        image = load_image('bandage.jpg')
-        self.image = pg.transform.scale(image, (48, 48))
+        image = load_image('bandage.png')
+        self.image = pg.transform.scale(image, (48, 65))
         self.rect = pg.Rect(x, y, x1, y1)
         # self.hit_rect = self.rect
         self.health_plus = 0.2

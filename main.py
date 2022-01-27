@@ -449,7 +449,6 @@ class Game:
         self.shipp = pg.sprite.Group()
         self.medthings = pg.sprite.Group()
         self.enemies = pg.sprite.Group()
-        self.sword = pg.sprite.Group()
         self.liquid = pg.sprite.Group()
 
         for object in self.map.tmx.objects:
@@ -469,11 +468,8 @@ class Game:
                 MedKit(self, object.x, object.y, object.width, object.height)
             elif object.name == 'bandage':
                 Bandage(self, object.x, object.y, object.width, object.height)
-            elif object.name == 'sword':
-                Sword(self, object.x, object.y, object.width, object.height)
             elif object.name == 'liquid':
                 Liquid(self, object.x, object.y, object.width, object.height)
-
 
         self.camera = Camera(self.map.width, self.map.height)
 
@@ -549,6 +545,7 @@ class Game:
 
     def lose(self):
         if self.f:
+            pg.mixer.music.pause()
             self.game_over_sound.play()
             self.f = False
         run = True
@@ -574,6 +571,7 @@ class Game:
 
     def win(self):
         if self.f:
+            pg.mixer.music.pause()
             self.win_sound.play()
             self.f = False
         run = True

@@ -8,6 +8,8 @@ import random
 
 pg.font.init()
 pg.mixer.init()
+pg.display.set_icon(pg.image.load('icon.png'))
+
 
 def music_mute():
     if settings.music_flag:

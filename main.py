@@ -325,10 +325,10 @@ class Menu:
                     elif self.check_pos(pg.mouse.get_pos()) == 'Music':
                         print('music')
                         music_mute()
-                        self.draw()
                 elif (event.type == pg.KEYDOWN or event.type == pg.MOUSEBUTTONDOWN):
                     self.click_button_music('down')
                     # начинаем игру
+            self.draw()
             pg.display.flip()
             self.clock.tick(FPS)
 

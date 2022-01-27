@@ -349,7 +349,7 @@ class Game:
     def __init__(self, map_name):
         pg.init()
         self.vol = 0.15
-        pg.mixer.music.load('Menu/menu_music.mp3')
+        pg.mixer.music.load('menuMusicNeedToChange.mp3')
         if settings.music_flag:
             pg.mixer.music.play(-5, 7.3, 10)
             pg.mixer.music.play(-1)

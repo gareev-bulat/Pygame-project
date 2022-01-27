@@ -64,6 +64,7 @@ class Player(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self, self.groups)
         self.money_music = pg.mixer.Sound('picking a coin.mp3')
         self.player_damage_music = pg.mixer.Sound('hit_player.mp3')
+        self.healing_player_music = pg.mixer.Sound('healing_player.mp3')
         self.money_music.set_volume(1.0)
         self.game = game
         self.clock = pg.time.Clock()
@@ -134,6 +135,7 @@ class Player(pg.sprite.Sprite):
         elif len(hits_with_shipp) == 0:
             self.count_damage_shipps = 0
         if hits_with_medthings:
+            self.sounds('medthings')
             settings.HEALTH = hits_with_medthings[0].health_plus + settings.HEALTH
             hits_with_medthings[0].kill()
             if settings.HEALTH > 1.0:
@@ -234,6 +236,8 @@ class Player(pg.sprite.Sprite):
             self.money_music.play()
         if what == 'damage_to_player':
             self.player_damage_music.play()
+        if what == 'medthings':
+            self.healing_player_music.play()
 
     def update(self):
         self.y = self.y + self.levitating

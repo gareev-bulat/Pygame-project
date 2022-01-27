@@ -24,5 +24,6 @@ PLAYER_DAMAGE = {'sword': 0.04}
 active_weapon = 'sword'
 active_skin = 'black'
 LEVEL_LIST = ['map.tmx', 'map2.tmx', 'map3.tmx']
+music_flag = True
 
 

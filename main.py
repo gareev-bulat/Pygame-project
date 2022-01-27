@@ -7,6 +7,21 @@ import sqlite3
 import random
 
 pg.font.init()
+pg.mixer.init()
+
+def music_mute():
+    if settings.music_flag:
+        pg.mixer.music.pause()
+        settings.music_flag = False
+    else:
+        pg.mixer.music.unpause()
+        settings.music_flag = True
+        vol = 0.15
+        pg.mixer.music.load('Menu/menu_music.mp3')
+        if settings.music_flag:
+            pg.mixer.music.play(-5, 7.3, 10)
+            pg.mixer.music.play(-1)
+            pg.mixer.music.set_volume(vol)
 
 def load_image(name, colorkey=None):
     fullname = name
@@ -19,7 +34,6 @@ def load_image(name, colorkey=None):
 class Shop:
 
     def __init__(self):
-        pg.mixer.init()
         self.vol = 0.15
         self.clock = pg.time.Clock()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -128,7 +142,6 @@ class Shop:
 
 class Levels:
     def __init__(self):
-        pg.mixer.init()
         self.vol = 0.15
         self.clock = pg.time.Clock()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -211,12 +224,12 @@ class Levels:
 class Menu:
 
     def __init__(self):
-        pg.mixer.init()
         self.vol = 0.15
         pg.mixer.music.load('Menu/menu_music.mp3')
-        pg.mixer.music.play(-5, 7.3, 10)
-        pg.mixer.music.play(-1)
-        pg.mixer.music.set_volume(self.vol)
+        if settings.music_flag:
+            pg.mixer.music.play(-5, 7.3, 10)
+            pg.mixer.music.play(-1)
+            pg.mixer.music.set_volume(self.vol)
         settings.MONEY_COUNTER = 0
         self.clock = pg.time.Clock()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -224,7 +237,8 @@ class Menu:
                         load_image('Menu/exit.png'),
                         load_image('Menu/options.png'),
                         load_image('Menu/shop.png'),
-                        pg.transform.scale(load_image('Menu/mute.png'), (80, 74))]
+                        pg.transform.scale(load_image('Menu/mute_on.png'), (80, 74)),
+                        pg.transform.scale(load_image('Menu/mute_off.png'), (80, 74))]
         self.buttons_sizes = {'play': (221, 100), 
                               'options': (326, 79), 
                               'exit': (204, 79),
@@ -234,20 +248,12 @@ class Menu:
         self.click_down_sound = pg.mixer.Sound("Menu/click_down.mp3")
         self.con = sqlite3.connect("database.db")
         self.text_font = pg.font.SysFont(settings.FONT, 35)
-        self.music_flag = True
+        #self.music_flag = True
 
 
     def terminate(self):
         pg.quit()
         sys.exit()
-
-    def music_mute(self):
-        if self.music_flag:
-            pg.mixer.music.pause()
-            self.music_flag = False
-        else:
-            pg.mixer.music.unpause()
-            self.music_flag = True
 
     def check_pos(self, pos):
         x, y = pos[0], pos[1]
@@ -317,12 +323,21 @@ class Menu:
                         pg.quit()
                         sys.exit()
                     elif self.check_pos(pg.mouse.get_pos()) == 'Music':
-                        self.music_mute()
+                        print('music')
+                        music_mute()
+                        self.draw()
                 elif (event.type == pg.KEYDOWN or event.type == pg.MOUSEBUTTONDOWN):
                     self.click_button_music('down')
                     # начинаем игру
             pg.display.flip()
             self.clock.tick(FPS)
+
+    def draw(self):
+        if settings.music_flag:
+            button = self.buttons[4]
+        else:
+            button = self.buttons[5]
+        self.screen.blit(button, (WIDTH - self.buttons_sizes['mute'][0] - 5, 5))
 
     def work_with_base(self):
         cur = self.con.cursor()
@@ -334,10 +349,11 @@ class Game:
     def __init__(self, map_name):
         pg.init()
         self.vol = 0.15
-        pg.mixer.music.load('menuMusicNeedToChange.mp3')
-        pg.mixer.music.play(-5, 7.3, 10)
-        pg.mixer.music.play(-1)
-        pg.mixer.music.set_volume(self.vol)
+        pg.mixer.music.load('Menu/menu_music.mp3')
+        if settings.music_flag:
+            pg.mixer.music.play(-5, 7.3, 10)
+            pg.mixer.music.play(-1)
+            pg.mixer.music.set_volume(self.vol)
         self.jump_sound = [pg.mixer.Sound('jump_sound_1.mp3'), pg.mixer.Sound('jump_sound_2.mp3'), pg.mixer.Sound('jump_sound_3.mp3')]
         for sound in self.jump_sound:
             sound.set_volume(0.2)
@@ -352,6 +368,10 @@ class Game:
         self.color_of_health = GREEN
         self.con = sqlite3.connect("database.db")
         self.snow_list = []
+        self.win_sound = pg.mixer.Sound('win_sound.mp3')
+        self.game_over_sound = pg.mixer.Sound('game_over_sound.mp3')
+        self.win_sound.set_volume(0.4)
+        self.f = True
         self.load_data()
         self.prepare_snow()
 
@@ -527,6 +547,9 @@ class Game:
         sys.exit()
 
     def lose(self):
+        if self.f:
+            self.game_over_sound.play()
+            self.f = False
         run = True
         while run:
             for event in pg.event.get():
@@ -549,6 +572,9 @@ class Game:
             self.clock.tick(15)
 
     def win(self):
+        if self.f:
+            self.win_sound.play()
+            self.f = False
         run = True
         while run:
             for event in pg.event.get():
@@ -566,6 +592,7 @@ class Game:
             self.print_text('     Уровень пройден!', 280, 200)
             self.print_text('Следующий уровень', 280, 290)
             self.print_text('Вернуться в меню', 280, 350)
+
 
             pg.display.flip()
             self.clock.tick(15)

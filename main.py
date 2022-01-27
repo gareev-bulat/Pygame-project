@@ -370,6 +370,7 @@ class Game:
         self.snow_list = []
         self.win_sound = pg.mixer.Sound('win_sound.mp3')
         self.game_over_sound = pg.mixer.Sound('game_over_sound.mp3')
+        self.game_over_sound.set_volume(0.4)
         self.win_sound.set_volume(0.4)
         self.f = True
         self.load_data()

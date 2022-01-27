@@ -29,14 +29,12 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05ee5613-275b-4909-a95c-f5aec8c90f5b" name="Default Changelist" comment="MUTE music">
+    <list default="true" id="05ee5613-275b-4909-a95c-f5aec8c90f5b" name="Default Changelist" comment="Music and sounds: MUTE music, Win game, lose game, bring things">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Menu/mute.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/database.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map.tiled-session" beforeDir="false" afterPath="$PROJECT_DIR$/map.tiled-session" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/map.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sprites.py" beforeDir="false" afterPath="$PROJECT_DIR$/sprites.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -429,7 +427,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643269535268</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Music and sounds: MUTE music, Win game, lose game, bring things">
+      <created>1643290638103</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1643290638104</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -457,7 +462,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="commit4" />
     <MESSAGE value="commit5" />
     <MESSAGE value="jumps" />
     <MESSAGE value="MENU &#10;only text" />
@@ -482,7 +486,8 @@
     <MESSAGE value="update map2(snow-location)" />
     <MESSAGE value="uhhi" />
     <MESSAGE value="MUTE music" />
-    <option name="LAST_COMMIT_MESSAGE" value="MUTE music" />
+    <MESSAGE value="Music and sounds: MUTE music, Win game, lose game, bring things" />
+    <option name="LAST_COMMIT_MESSAGE" value="Music and sounds: MUTE music, Win game, lose game, bring things" />
   </component>
   <component name="WindowStateProjectService">
     <state x="508" y="236" key="#Notifications" timestamp="1641634733439">
@@ -501,25 +506,25 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1642510173633" />
-    <state width="901" height="120" key="GridCell.Tab.0.bottom" timestamp="1643288410970">
+    <state width="900" height="170" key="GridCell.Tab.0.bottom" timestamp="1643292399022">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="901" height="120" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1643288410970" />
+    <state width="900" height="170" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1643292399022" />
     <state width="1515" height="129" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1642359889974" />
-    <state width="901" height="120" key="GridCell.Tab.0.center" timestamp="1643288410969">
+    <state width="900" height="170" key="GridCell.Tab.0.center" timestamp="1643292399021">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="901" height="120" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1643288410969" />
+    <state width="900" height="170" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1643292399021" />
     <state width="1515" height="129" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1642359889974" />
-    <state width="901" height="120" key="GridCell.Tab.0.left" timestamp="1643288410969">
+    <state width="900" height="170" key="GridCell.Tab.0.left" timestamp="1643292399021">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="901" height="120" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1643288410969" />
+    <state width="900" height="170" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1643292399021" />
     <state width="1515" height="129" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1642359889973" />
-    <state width="901" height="120" key="GridCell.Tab.0.right" timestamp="1643288410970">
+    <state width="900" height="170" key="GridCell.Tab.0.right" timestamp="1643292399022">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="901" height="120" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1643288410970" />
+    <state width="900" height="170" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1643292399022" />
     <state width="1515" height="129" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1642359889974" />
     <state width="757" height="160" key="GridCell.Tab.1.bottom" timestamp="1642344068547">
       <screen x="0" y="0" width="1536" height="864" />

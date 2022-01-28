@@ -605,6 +605,7 @@ class Game:
             Game(self.title).work_with_base()
             settings.MONEY_COUNTER = 0
         else:
+            self.game_over_sound.stop()
             settings.MONEY_COUNTER = 0
         settings.HEALTH = 1.0
         game = Game(self.title)

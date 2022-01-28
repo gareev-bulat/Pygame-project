@@ -29,10 +29,14 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05ee5613-275b-4909-a95c-f5aec8c90f5b" name="Default Changelist" comment="change music and one bag">
+    <list default="true" id="05ee5613-275b-4909-a95c-f5aec8c90f5b" name="Default Changelist" comment="fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/database.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map.tiled-session" beforeDir="false" afterPath="$PROJECT_DIR$/map.tiled-session" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/map.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map2.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/map2.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spritesheet_24.png" beforeDir="false" afterPath="$PROJECT_DIR$/spritesheet_24.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -453,7 +457,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643296421970</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="fix">
+      <created>1643305320565</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1643305320567</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -481,7 +492,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="MENU &#10;button_play complete" />
     <MESSAGE value="MENU &#10;button_play complete&#10;menu music" />
     <MESSAGE value="MENU button_play complete menu music, correct mistakes" />
     <MESSAGE value="MENU buttons complete(options), need volume to click sounds" />
@@ -506,7 +516,8 @@
     <MESSAGE value="fix some bags" />
     <MESSAGE value="change music" />
     <MESSAGE value="change music and one bag" />
-    <option name="LAST_COMMIT_MESSAGE" value="change music and one bag" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
   <component name="WindowStateProjectService">
     <state x="508" y="236" key="#Notifications" timestamp="1641634733439">
@@ -517,33 +528,33 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1639897823800" />
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1643086068623">
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1643318625334">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1643086068623" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1643318625334" />
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1642510173633">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1642510173633" />
-    <state width="895" height="143" key="GridCell.Tab.0.bottom" timestamp="1643305175205">
+    <state width="894" height="141" key="GridCell.Tab.0.bottom" timestamp="1643313990770">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="895" height="143" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1643305175205" />
+    <state width="894" height="141" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1643313990770" />
     <state width="1515" height="129" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1642359889974" />
-    <state width="895" height="143" key="GridCell.Tab.0.center" timestamp="1643305175205">
+    <state width="894" height="141" key="GridCell.Tab.0.center" timestamp="1643313990770">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="895" height="143" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1643305175205" />
+    <state width="894" height="141" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1643313990770" />
     <state width="1515" height="129" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1642359889974" />
-    <state width="895" height="143" key="GridCell.Tab.0.left" timestamp="1643305175204">
+    <state width="894" height="141" key="GridCell.Tab.0.left" timestamp="1643313990769">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="895" height="143" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1643305175204" />
+    <state width="894" height="141" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1643313990769" />
     <state width="1515" height="129" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1642359889973" />
-    <state width="895" height="143" key="GridCell.Tab.0.right" timestamp="1643305175205">
+    <state width="894" height="141" key="GridCell.Tab.0.right" timestamp="1643313990770">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="895" height="143" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1643305175205" />
+    <state width="894" height="141" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1643313990770" />
     <state width="1515" height="129" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1642359889974" />
     <state width="757" height="160" key="GridCell.Tab.1.bottom" timestamp="1642344068547">
       <screen x="0" y="0" width="1536" height="864" />
@@ -590,10 +601,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="492" y="146" key="VcsDiffUtil.ChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1639898958136" />
-    <state x="630" y="315" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1643108822258">
+    <state x="630" y="315" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1643305338484">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="630" y="315" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1643108822258" />
+    <state x="630" y="315" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1643305338484" />
     <state x="630" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.864@0.0.1536.864" timestamp="1642323445124" />
     <state x="59" y="109" width="1276" height="613" maximized="true" key="dock-window-1" timestamp="1642510396973">
       <screen x="0" y="0" width="1536" height="824" />

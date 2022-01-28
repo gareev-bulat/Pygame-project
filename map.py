@@ -3,7 +3,7 @@ import pygame as pg
 from settings import *
 from settings import *
 
-
+# игровое поле
 class TiledMap:
     def __init__(self, filename):
         self.tmx = pytmx.load_pygame(filename, pixelalpha=True)
@@ -25,6 +25,7 @@ class TiledMap:
         return surface
 
 
+# камера
 class Camera:
     def __init__(self, width, height):
         self.camera = pg.Rect(0, 0, width, height)

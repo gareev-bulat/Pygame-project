@@ -1,7 +1,7 @@
 import pygame as pg
 import os, sys
-from settings import *
-from sprites import *
+from settings import * # библиотека настроек
+from sprites import *  # библиотека спрайтов
 from map import *
 import sqlite3
 import random
@@ -33,6 +33,7 @@ def load_image(name, colorkey=None):
     image = pg.image.load(fullname)
     return image
 
+# магазин
 class Shop:
 
     def __init__(self):
@@ -142,6 +143,8 @@ class Shop:
 #     def event(self):
 #         self.screen.blit(self.screen2, (WIDTH / 2 - OPTIONS_WIDTH / 2, HEIGHT / 2 - OPTIONS_HEIGHT / 2))
 
+# окно уровней
+
 class Levels:
     def __init__(self):
         self.vol = 0.15
@@ -162,7 +165,6 @@ class Levels:
 
     def check_pos(self, pos):
         x, y = pos[0], pos[1]
-        print(x, y)
         if 334 <= x <= 388 and 307 <= y <= 414:
             return 'level_1'
         if 458 <= x <= 544 and 310 <= y <= 418:
@@ -223,6 +225,8 @@ class Levels:
         while running:
             game.run()
 
+# главное меню игры
+
 class Menu:
 
     def __init__(self):
@@ -259,7 +263,6 @@ class Menu:
 
     def check_pos(self, pos):
         x, y = pos[0], pos[1]
-        print(x, y)
         if 409 <= x <= 609 and 298 <= y <= 344:
             return 'Play'
         elif 414 <= x <= 598 and 391 <= y <= 440:
@@ -325,7 +328,6 @@ class Menu:
                         pg.quit()
                         sys.exit()
                     elif self.check_pos(pg.mouse.get_pos()) == 'Music':
-                        print('music')
                         music_mute()
                 elif (event.type == pg.KEYDOWN or event.type == pg.MOUSEBUTTONDOWN):
                     self.click_button_music('down')
@@ -346,7 +348,7 @@ class Menu:
         result = cur.execute("""SELECT * FROM money_counter""").fetchall()
         return str(result[0][0])
 
-
+# соновной игровой класс
 class Game:
     def __init__(self, map_name):
         pg.init()

@@ -6,6 +6,7 @@ import os, sys
 from pygame import time
 
 
+# загрузка изображений
 def load_image(name, colorkey=None):
     fullname = name
     if not os.path.isfile(fullname):
@@ -15,6 +16,7 @@ def load_image(name, colorkey=None):
     return image
 
 
+# обрезка
 def cut_sheet(sheet, columns, rows, frames):
     rect = pg.Rect(0, 0, sheet.get_width() // columns,
                         sheet.get_height() // rows)
@@ -24,7 +26,7 @@ def cut_sheet(sheet, columns, rows, frames):
             frames.append(pg.transform.scale(sheet.subsurface(pg.Rect(
                 frame_location, rect.size)), (64, 64)))
 
-
+# враги
 class Enemies(pg.sprite.Sprite):
     def __init__(self, game, x, y, tip):
         pg.mixer.init()
@@ -53,10 +55,8 @@ class Enemies(pg.sprite.Sprite):
             self.rect.y = y
         self.do()
 
-    def do(self):
-        pass
 
-
+# игрок
 class Player(pg.sprite.Sprite):
     def __init__(self, game, x, y):
         pg.mixer.init()
@@ -252,6 +252,7 @@ class Player(pg.sprite.Sprite):
         self.collide_with_walls('y')
 
 
+# жидкость
 class Liquid(pg.sprite.Sprite):
     def __init__(self, game, x, y, x1, y1):
         self.groups = game.liquid
@@ -264,6 +265,7 @@ class Liquid(pg.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
+#стены, платформы
 class Wall(pg.sprite.Sprite):
     def __init__(self, game, x, y, x1, y1):
         self.groups = game.walls
@@ -276,6 +278,7 @@ class Wall(pg.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
+#лестница
 class Ladder(pg.sprite.Sprite):
     def __init__(self, game, x, y, x1, y1):
         self.groups = game.ladders
@@ -288,6 +291,7 @@ class Ladder(pg.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
+#монетки
 class Money(pg.sprite.Sprite):
     def __init__(self, game, x, y, x1, y1):
         self.groups = game.money
@@ -302,6 +306,7 @@ class Money(pg.sprite.Sprite):
         self.rect.y = y
 
 
+#аптечка
 class MedKit(pg.sprite.Sprite):
     def __init__(self, game, x, y, x1, y1):
         self.groups = game.medthings
@@ -316,7 +321,7 @@ class MedKit(pg.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
-
+# бинт
 class Bandage(pg.sprite.Sprite):
     def __init__(self, game, x, y, x1, y1):
         self.groups = game.medthings
@@ -331,6 +336,7 @@ class Bandage(pg.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
+# шипы
 class Shipp(pg.sprite.Sprite):
     def __init__(self, game, x, y, x1, y1):
         self.groups = game.shipp
@@ -343,6 +349,7 @@ class Shipp(pg.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
+# меч
 class Sword(pg.sprite.Sprite):
     def __init__(self, game, x, y, x1, y1):
         self.groups = game.sword
